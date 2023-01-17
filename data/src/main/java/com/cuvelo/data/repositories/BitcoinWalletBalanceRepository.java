@@ -6,7 +6,7 @@ import com.cuvelo.data.datasources.RemoteBitcoinWalletBalanceDataSource;
 import io.reactivex.Observable;
 
 
-//Mover el otro repository aqui y cambiar nombre
+//TODO Mover el otro repository aqui y cambiar nombre
 public class BitcoinWalletBalanceRepository {
 
     private final LocalBitcoinWalletBalanceDataSource mLocalBitcoinWalletBalanceDataSource;

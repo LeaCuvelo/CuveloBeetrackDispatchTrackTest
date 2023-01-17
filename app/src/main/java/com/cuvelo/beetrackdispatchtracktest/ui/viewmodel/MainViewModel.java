@@ -37,7 +37,7 @@ public class MainViewModel extends ViewModel {
 
     //TODO create mapping from address model to address domain
     //Subscriber classes
-    static class GenerateAddressUseCaseSubscriber extends DefaultSubscriber<AddressModel>{
+    static class GenerateAddressUseCaseSubscriber extends DefaultSubscriber<AddressDomain>{
 
         //Evitar memory leaks.
         final WeakReference<MainViewModel> viewModelWeakReference;
@@ -60,10 +60,10 @@ public class MainViewModel extends ViewModel {
         }
 
         @Override
-        public void onNext(AddressModel addressModel) {
-            super.onNext(addressModel);
+        public void onNext(AddressDomain address) {
+            super.onNext(address);
             Log.e("DEBUG", "onNext");
-            Log.e("DEBUG", addressModel.address);
+            Log.e("DEBUG", address.address);
 
 
         }

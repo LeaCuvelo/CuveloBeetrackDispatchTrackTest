@@ -2,6 +2,7 @@ package com.cuvelo.beetrackdispatchtracktest.di;
 
 import com.cuvelo.beetrackdispatchtracktest.data.BitcoinWalletRemoteServer;
 import com.cuvelo.beetrackdispatchtracktest.data.RemoteBitcoinWalletAddressDataSourceImpl;
+import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressModelDataMapper;
 import com.cuvelo.beetrackdispatchtracktest.ui.UIThread;
 import com.cuvelo.data.datasources.RemoteBitcoinWalletAddressDataSource;
 import com.cuvelo.usecases.executor.JobExecutor;
@@ -51,8 +52,9 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    public RemoteBitcoinWalletAddressDataSource provideRemoteBitcoinWalletAddressDataSource(BitcoinWalletRemoteServer bitcoinWalletRemoteServer){
-        return new RemoteBitcoinWalletAddressDataSourceImpl(bitcoinWalletRemoteServer);
+    public RemoteBitcoinWalletAddressDataSource provideRemoteBitcoinWalletAddressDataSource(BitcoinWalletRemoteServer bitcoinWalletRemoteServer,
+                                                                                            AddressModelDataMapper addressModelDataMapper ){
+        return new RemoteBitcoinWalletAddressDataSourceImpl(bitcoinWalletRemoteServer, addressModelDataMapper);
     }
 
     //TODO move to Concurrent Module
