@@ -1,7 +1,6 @@
 package com.cuvelo.beetrackdispatchtracktest.data.mappers;
 
 public interface Transformer<T,Y>{
-
     /**
      * Transform a model object into domain object
      *
@@ -9,5 +8,4 @@ public interface Transformer<T,Y>{
      * @return transformed object
      * */
     T transform(Y object);
-
 }

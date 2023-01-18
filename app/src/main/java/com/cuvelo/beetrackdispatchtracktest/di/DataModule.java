@@ -1,8 +1,10 @@
 package com.cuvelo.beetrackdispatchtracktest.di;
 
 import com.cuvelo.data.datasources.LocalBitcoinWalletAddressDataSource;
+import com.cuvelo.data.datasources.LocalBitcoinWalletBalanceDataSource;
 import com.cuvelo.data.datasources.RemoteBitcoinWalletAddressDataSource;
-import com.cuvelo.data.repositories.GenerateBitcoinAddressRepository;
+import com.cuvelo.data.datasources.RemoteBitcoinWalletBalanceDataSource;
+import com.cuvelo.data.repositories.BitcoinWalletRepository;
 
 import dagger.Module;
 import dagger.Provides;
@@ -14,12 +16,16 @@ import dagger.hilt.components.SingletonComponent;
 public class DataModule {
 
     @Provides
-    public GenerateBitcoinAddressRepository provideGenerateBitcoinAddressRepository(
+    public BitcoinWalletRepository provideBitcoinWalletRepository(
             LocalBitcoinWalletAddressDataSource localBitcoinWalletAddressDataSource,
-            RemoteBitcoinWalletAddressDataSource remoteBitcoinWalletAddressDataSource){
-        return new GenerateBitcoinAddressRepository(localBitcoinWalletAddressDataSource,
-                                                    remoteBitcoinWalletAddressDataSource);
+            RemoteBitcoinWalletAddressDataSource remoteBitcoinWalletAddressDataSource,
+            LocalBitcoinWalletBalanceDataSource localBitcoinWalletBalanceDataSource,
+            RemoteBitcoinWalletBalanceDataSource remoteBitcoinWalletBalanceDataSource){
+        return new BitcoinWalletRepository(
+                localBitcoinWalletAddressDataSource,
+                remoteBitcoinWalletAddressDataSource,
+                localBitcoinWalletBalanceDataSource,
+                remoteBitcoinWalletBalanceDataSource
+                );
     }
-
-
 }

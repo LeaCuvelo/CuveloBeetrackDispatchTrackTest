@@ -1,7 +1,9 @@
 package com.cuvelo.beetrackdispatchtracktest.di;
 
 import com.cuvelo.beetrackdispatchtracktest.data.LocalBitcoinWalletAddressDataSourceImpl;
+import com.cuvelo.beetrackdispatchtracktest.data.LocalBitcoinWalletBalanceDataSourceImpl;
 import com.cuvelo.data.datasources.LocalBitcoinWalletAddressDataSource;
+import com.cuvelo.data.datasources.LocalBitcoinWalletBalanceDataSource;
 
 import javax.inject.Singleton;
 
@@ -18,6 +20,12 @@ public class RoomModule {
     @Singleton
     public LocalBitcoinWalletAddressDataSource provideLocalBitcoinWalletAddressDataSource(){
         return new LocalBitcoinWalletAddressDataSourceImpl();
+    }
+
+    @Provides
+    @Singleton
+    public LocalBitcoinWalletBalanceDataSource provideLocalBitcoinWalletBalanceDataSource(){
+        return new LocalBitcoinWalletBalanceDataSourceImpl();
     }
 
 }

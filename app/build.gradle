@@ -98,10 +98,6 @@ dependencies {
     //Zxing QR Barcode Generator
     implementation "com.journeyapps:zxing-android-embedded:$zxing_version"
 
-    //Multidex
-    implementation "androidx.multidex:multidex:$multidex_application"
-
-
     //Test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

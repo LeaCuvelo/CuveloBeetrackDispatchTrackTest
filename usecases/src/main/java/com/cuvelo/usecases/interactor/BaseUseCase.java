@@ -8,17 +8,18 @@ import io.reactivex.disposables.Disposables;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
-public abstract class BaseUseCase {
+public abstract class BaseUseCase<T> {
 
     protected final ThreadExecutor mThreadExecutor;
     protected final PostExecutionThread mPostExecutionThread;
     protected Disposable mSubscription = Disposables.empty();
 
-
     public BaseUseCase(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
         this.mThreadExecutor = threadExecutor;
         this.mPostExecutionThread = postExecutionThread;
     }
+
+    protected abstract Observable<T> buildUseCaseObservable();
 
     public void unsubscribe(){
         if(!mSubscription.isDisposed()){
@@ -26,23 +27,15 @@ public abstract class BaseUseCase {
         }
     }
 
-    //TODO Refactor y ver con generics tanto para Observable y DisposableObservable
-    //TODO try to generify
-    //unsubscribe
-    protected abstract Observable buildUseCaseObservable();
-
-    public void execute(DisposableObserver useCaseSubscriber){
+    public void execute(DisposableObserver<T> useCaseSubscriber){
         if(!mSubscription.isDisposed()){
             mSubscription.dispose();
         }
 
-        mSubscription = (DisposableObserver) buildUseCaseObservable()
+        mSubscription = (DisposableObserver<T>) buildUseCaseObservable()
                 .subscribeOn(Schedulers.from(mThreadExecutor))
                 .observeOn(mPostExecutionThread.getScheduler())
                 .subscribeWith(useCaseSubscriber);
-
-
     }
-
 
 }

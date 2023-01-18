@@ -5,13 +5,9 @@ import io.reactivex.observers.DisposableObserver;
 public abstract class DefaultSubscriber<T> extends DisposableObserver<T> {
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(Throwable e) {}
 
-    }
-
-    protected void onCompleted(){
-
-    }
+    protected void onCompleted(){}
 
     @Override
     public void onComplete() {
@@ -19,7 +15,6 @@ public abstract class DefaultSubscriber<T> extends DisposableObserver<T> {
     }
 
     @Override
-    public void onNext(T t) {
+    public void onNext(T t) {}
 
-    }
 }

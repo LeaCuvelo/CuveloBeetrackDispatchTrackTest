@@ -1,6 +1,7 @@
 package com.cuvelo.usecases.interactor;
 
-import com.cuvelo.data.repositories.GenerateBitcoinAddressRepository;
+import com.cuvelo.data.repositories.BitcoinWalletRepository;
+import com.cuvelo.domain.AddressDomain;
 import com.cuvelo.usecases.executor.PostExecutionThread;
 import com.cuvelo.usecases.executor.ThreadExecutor;
 
@@ -9,24 +10,22 @@ import io.reactivex.Observable;
 
 public class GenerateAddressUseCase extends BaseUseCase {
 
-    private final GenerateBitcoinAddressRepository mGenerateBitcoinAddressRepository;
+    private final BitcoinWalletRepository mBitcoinWalletRepository;
 
-
-    //todo emitir un primer valor
+    //TODO emitir un primer valo
     //TODO reemplazar observable con flowable
 
     public GenerateAddressUseCase(
             ThreadExecutor threadExecutor,
             PostExecutionThread postExecutionThread,
-            GenerateBitcoinAddressRepository mGenerateBitcoinAddressRepository) {
+            BitcoinWalletRepository bitcoinWalletRepository) {
         super(threadExecutor, postExecutionThread);
-        this.mGenerateBitcoinAddressRepository = mGenerateBitcoinAddressRepository;
+        this.mBitcoinWalletRepository = bitcoinWalletRepository;
     }
 
     @Override
-    protected Observable buildUseCaseObservable() {
-        return mGenerateBitcoinAddressRepository.generateBitcoinWalletAddressFromApi();
+    protected Observable<AddressDomain> buildUseCaseObservable() {
+        return mBitcoinWalletRepository.generateBitcoinWalletAddressFromApi();
     }
-
 
 }

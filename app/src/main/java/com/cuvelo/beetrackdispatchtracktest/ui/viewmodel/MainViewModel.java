@@ -4,15 +4,11 @@ import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
-import com.cuvelo.beetrackdispatchtracktest.data.model.AddressModel;
 import com.cuvelo.domain.AddressDomain;
 import com.cuvelo.usecases.interactor.DefaultSubscriber;
 import com.cuvelo.usecases.interactor.GenerateAddressUseCase;
-
 import java.lang.ref.WeakReference;
-
 import javax.inject.Inject;
-
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
@@ -30,16 +26,15 @@ public class MainViewModel extends ViewModel {
         mGenerateAddressUseCase.execute(new GenerateAddressUseCaseSubscriber(this));
     }
 
-    //TODO onClear invoke unsubscribe()
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        mGenerateAddressUseCase.unsubscribe();
+    }
 
-
-
-
-    //TODO create mapping from address model to address domain
-    //Subscriber classes
+    //region Subscriber classes
     static class GenerateAddressUseCaseSubscriber extends DefaultSubscriber<AddressDomain>{
 
-        //Evitar memory leaks.
         final WeakReference<MainViewModel> viewModelWeakReference;
 
         public GenerateAddressUseCaseSubscriber(MainViewModel viewModelWeakReference) {
@@ -64,9 +59,9 @@ public class MainViewModel extends ViewModel {
             super.onNext(address);
             Log.e("DEBUG", "onNext");
             Log.e("DEBUG", address.address);
-
-
         }
     }
+
+    //endregion Subscriber classes
 
 }

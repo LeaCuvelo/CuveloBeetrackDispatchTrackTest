@@ -1,6 +1,5 @@
 package com.cuvelo.beetrackdispatchtracktest.data;
 
-
 import com.cuvelo.beetrackdispatchtracktest.data.model.AddressModel;
 
 import io.reactivex.Observable;

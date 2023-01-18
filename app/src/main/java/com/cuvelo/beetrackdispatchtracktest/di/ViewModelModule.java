@@ -1,6 +1,6 @@
 package com.cuvelo.beetrackdispatchtracktest.di;
 
-import com.cuvelo.data.repositories.GenerateBitcoinAddressRepository;
+import com.cuvelo.data.repositories.BitcoinWalletRepository;
 import com.cuvelo.usecases.executor.PostExecutionThread;
 import com.cuvelo.usecases.executor.ThreadExecutor;
 import com.cuvelo.usecases.interactor.GenerateAddressUseCase;
@@ -17,7 +17,7 @@ public class ViewModelModule {
     @Provides
     public GenerateAddressUseCase provideGenerateAddressUseCase(ThreadExecutor threadExecutor,
                                                                 PostExecutionThread postExecutionThread,
-                                                                GenerateBitcoinAddressRepository repository){
-        return new GenerateAddressUseCase(threadExecutor, postExecutionThread, repository);
+                                                                BitcoinWalletRepository bitcoinWalletRepository){
+        return new GenerateAddressUseCase(threadExecutor, postExecutionThread, bitcoinWalletRepository);
     }
 }

@@ -19,5 +19,4 @@ public class TransformerModule {
         return new AddressModelDataMapper();
     }
 
-
 }

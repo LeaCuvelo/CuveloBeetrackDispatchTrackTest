@@ -1,7 +1,9 @@
 package com.cuvelo.data.datasources;
 
+import com.cuvelo.domain.AddressDomain;
+
 import io.reactivex.Observable;
 
 public interface RemoteBitcoinWalletAddressDataSource {
-    public Observable generateBitcoinWalletAddress();
+    Observable<AddressDomain> generateBitcoinWalletAddress();
 }

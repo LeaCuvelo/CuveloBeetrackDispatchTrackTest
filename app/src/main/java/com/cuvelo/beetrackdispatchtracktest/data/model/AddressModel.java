@@ -12,13 +12,6 @@ public class AddressModel implements Parcelable {
     @SerializedName("address") public String address;
     @SerializedName("wif") public String wif;
 
-    public AddressModel(String privateKeyPair, String publicKeyPair, String address, String wif) {
-        this.privateKeyPair = privateKeyPair;
-        this.publicKeyPair = publicKeyPair;
-        this.address = address;
-        this.wif = wif;
-    }
-
     public AddressModel(Parcel parcel) {
         this.privateKeyPair = parcel.readString();
         this.publicKeyPair = parcel.readString();
