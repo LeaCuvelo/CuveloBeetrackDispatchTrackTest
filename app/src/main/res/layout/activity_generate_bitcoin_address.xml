@@ -32,6 +32,7 @@
 
         <ImageView
             android:id="@+id/iv_btc_address_qr"
+            android:visibility="@{viewModel.errorStateVisibility ? View.GONE : View.VISIBLE}"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/main_margin"
@@ -45,21 +46,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_btc_address_title" />
 
-
-        <ProgressBar
-            android:id="@+id/pb_loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="?android:attr/progressBarStyle"
-            android:visibility="@{viewModel.progressBarVisibility ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/tv_btc_address_text"
             android:textColor="@color/black"
+            android:visibility="@{viewModel.errorStateVisibility ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="@dimen/main_margin"
@@ -72,6 +62,46 @@
             android:text="@{viewModel.addressMutableLiveData.address}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/progressBarStyle"
+            android:visibility="@{viewModel.progressBarVisibility ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:visibility="@{viewModel.errorStateVisibility ? View.VISIBLE : View.GONE}"
+            android:id="@+id/ll_error_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_btc_address_generation_error_icon"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_btc_address_generation_error_message"
+                android:text="@string/btc_address_generate_error_state"
+                android:gravity="center"
+                android:textColor="@color/red_alert"
+                android:textSize="@dimen/error_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/btn_save_btc_address"

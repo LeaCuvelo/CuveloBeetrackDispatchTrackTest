@@ -20,4 +20,5 @@ public class UIThread implements PostExecutionThread {
     public Scheduler getScheduler() {
         return AndroidSchedulers.mainThread();
     }
+
 }

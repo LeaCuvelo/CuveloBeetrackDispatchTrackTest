@@ -25,7 +25,6 @@ public class DataModule {
                 localBitcoinWalletAddressDataSource,
                 remoteBitcoinWalletAddressDataSource,
                 localBitcoinWalletBalanceDataSource,
-                remoteBitcoinWalletBalanceDataSource
-                );
+                remoteBitcoinWalletBalanceDataSource);
     }
 }

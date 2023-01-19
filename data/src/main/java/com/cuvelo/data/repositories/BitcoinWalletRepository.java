@@ -47,7 +47,14 @@ public class BitcoinWalletRepository {
         return mRemoteBitcoinWalletAddressDataSource.generateBitcoinWalletAddress();
     }
 
-    public Observable getBitcoinWalletAddressFromDataBase(){
+    public AddressDomain getBitcoinWalletAddressFromDataBase(){
         return mLocalBitcoinWalletAddressDataSource.getBitcoinWalletAddress();
     }
+
+    //TODO return values to success or error
+    public void saveBitcoinWalletAddress(AddressDomain addressDomain){
+        mLocalBitcoinWalletAddressDataSource.saveBitcoinWalletAddress(addressDomain);
+    }
+
+
 }

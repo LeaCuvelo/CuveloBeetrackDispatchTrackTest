@@ -10,7 +10,7 @@
     <string name="btc_address_save_message">Do you want to save \"%1$s\" as your BTC Wallet Address?</string>
     <string name="btc_address_save_confirm">Accept</string>
     <string name="btc_address_save_cancel">Cancel</string>
-
+    <string name="btc_address_generate_error_state">An error occur trying to get BTC Address from Internet. \n Check your connection and try again later</string>
 
 
 </resources>

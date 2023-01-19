@@ -92,6 +92,7 @@ dependencies {
 
     //DB - Room
     implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
 
     //Zxing QR Barcode Generator
     implementation "com.journeyapps:zxing-android-embedded:$zxing_version"

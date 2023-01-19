@@ -1,41 +1,25 @@
 package com.cuvelo.usecases.interactor;
 
-import com.cuvelo.usecases.executor.PostExecutionThread;
 import com.cuvelo.usecases.executor.ThreadExecutor;
-import io.reactivex.Observable;
+
 import io.reactivex.disposables.Disposable;
 import io.reactivex.disposables.Disposables;
-import io.reactivex.observers.DisposableObserver;
-import io.reactivex.schedulers.Schedulers;
 
-public abstract class BaseUseCase<T> {
+public abstract class BaseUseCase {
 
-    protected final ThreadExecutor mThreadExecutor;
-    protected final PostExecutionThread mPostExecutionThread;
-    protected Disposable mSubscription = Disposables.empty();
+    protected final ThreadExecutor threadExecutor;
 
-    public BaseUseCase(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
-        this.mThreadExecutor = threadExecutor;
-        this.mPostExecutionThread = postExecutionThread;
+    protected Disposable subscription = Disposables.empty();
+
+    public BaseUseCase(ThreadExecutor threadExecutor) {
+        this.threadExecutor = threadExecutor;
     }
-
-    protected abstract Observable<T> buildUseCaseObservable();
 
     public void unsubscribe(){
-        if(!mSubscription.isDisposed()){
-            mSubscription.dispose();
+        if(!subscription.isDisposed()){
+            subscription.dispose();
         }
     }
 
-    public void execute(DisposableObserver<T> useCaseSubscriber){
-        if(!mSubscription.isDisposed()){
-            mSubscription.dispose();
-        }
-
-        mSubscription = (DisposableObserver<T>) buildUseCaseObservable()
-                .subscribeOn(Schedulers.from(mThreadExecutor))
-                .observeOn(mPostExecutionThread.getScheduler())
-                .subscribeWith(useCaseSubscriber);
-    }
 
 }

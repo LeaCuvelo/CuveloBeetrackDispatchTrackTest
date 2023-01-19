@@ -1,9 +1,10 @@
 package com.cuvelo.data.datasources;
 
-import io.reactivex.Observable;
+import com.cuvelo.domain.AddressDomain;
+
 
 public interface LocalBitcoinWalletAddressDataSource {
-
-    public Observable getBitcoinWalletAddress();
-
+    AddressDomain getBitcoinWalletAddress();
+    void saveBitcoinWalletAddress(AddressDomain addressDomain);
 }
+

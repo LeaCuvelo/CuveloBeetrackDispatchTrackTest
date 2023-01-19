@@ -5,17 +5,14 @@ import com.cuvelo.domain.AddressDomain;
 import com.cuvelo.usecases.executor.PostExecutionThread;
 import com.cuvelo.usecases.executor.ThreadExecutor;
 
-import io.reactivex.Observable;
+import io.reactivex.Completable;
 
-
-public class GenerateAddressUseCase extends UseCase {
+public class SaveAddressUseCase  extends CompletableUseCase {
 
     private final BitcoinWalletRepository mBitcoinWalletRepository;
+    private AddressDomain addressDomain;
 
-    //TODO emit first value
-    //TODO replace with flow
-
-    public GenerateAddressUseCase(
+    public SaveAddressUseCase(
             ThreadExecutor threadExecutor,
             PostExecutionThread postExecutionThread,
             BitcoinWalletRepository bitcoinWalletRepository) {
@@ -23,9 +20,14 @@ public class GenerateAddressUseCase extends UseCase {
         this.mBitcoinWalletRepository = bitcoinWalletRepository;
     }
 
-    @Override
-    protected Observable<AddressDomain> buildUseCaseObservable() {
-        return mBitcoinWalletRepository.generateBitcoinWalletAddressFromApi();
+    public void setAddressDomain(AddressDomain addressDomain) {
+        this.addressDomain = addressDomain;
     }
 
+    //TODO return values to success or error
+    @Override
+    protected Completable buildUseCaseObservable() {
+       mBitcoinWalletRepository.saveBitcoinWalletAddress(addressDomain);
+       return null;
+    }
 }

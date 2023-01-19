@@ -3,15 +3,11 @@ package com.cuvelo.beetrackdispatchtracktest.ui.activity;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-
 import com.cuvelo.beetrackdispatchtracktest.R;
 import com.cuvelo.beetrackdispatchtracktest.databinding.ActivityGenerateBitcoinAddressBinding;
 import com.cuvelo.beetrackdispatchtracktest.ui.viewmodel.GenerateBitcoinAddressViewModel;
@@ -28,6 +24,8 @@ public class GenerateBitcoinAddressActivity extends AppCompatActivity {
 
     private ActivityGenerateBitcoinAddressBinding binding;
     private GenerateBitcoinAddressViewModel viewModel;
+
+    //region LifeCycle Methods
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +46,17 @@ public class GenerateBitcoinAddressActivity extends AppCompatActivity {
         setupObservers();
     }
 
+    //endregion LifeCycle Methods
+
+    //region Private Methods
+
     private void generateQRBtcAddress(AddressDomain address){
         try {
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             Bitmap bitmap = barcodeEncoder.encodeBitmap(address.address, BarcodeFormat.QR_CODE, 400, 400);
             binding.ivBtcAddressQr.setImageBitmap(bitmap);
         } catch(Exception e) {
-            Log.d(TAG, e.getClass().getSimpleName() + ": " + e.getMessage());
+            Log.e(TAG, e.getClass().getSimpleName() + ": " + e.getMessage());
         }
     }
 
@@ -65,10 +67,9 @@ public class GenerateBitcoinAddressActivity extends AppCompatActivity {
                     .setMessage(getBaseContext().getString(R.string.btc_address_save_message, viewModel.addressMutableLiveData.getValue().address))
                     .setPositiveButton(R.string.btc_address_save_confirm, (dialog, which) -> {
                         dialog.cancel();
+                        viewModel.storeCurrentBtcAddressInDB();
                     })
-                    .setNegativeButton(R.string.btc_address_save_cancel, (dialog, which) -> {
-                        dialog.cancel();
-                    });
+                    .setNegativeButton(R.string.btc_address_save_cancel, (dialog, which) -> dialog.cancel());
 
             AlertDialog confirmBtcAddressAlertDialog = confirmBtcAddressAlertDialogBuilder.create();
             confirmBtcAddressAlertDialog.setTitle(R.string.btc_address_save_title);
@@ -80,5 +81,7 @@ public class GenerateBitcoinAddressActivity extends AppCompatActivity {
         viewModel.addressMutableLiveData.observe(this,this::generateQRBtcAddress);
         viewModel.saveAlertDialogVisibility.observe(this,this::showSaveBtcAddressAlertDialog);
     }
+
+    //endregion Private Methods
 
 }
