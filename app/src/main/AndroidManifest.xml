@@ -16,8 +16,9 @@
         android:theme="@style/Theme.CuveloBeetrackDispatchtrackTest"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activity.MainActivity"
-            android:exported="true">
+            android:name=".ui.activity.GenerateBitcoinAddressActivity"
+            android:exported="true"
+            android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

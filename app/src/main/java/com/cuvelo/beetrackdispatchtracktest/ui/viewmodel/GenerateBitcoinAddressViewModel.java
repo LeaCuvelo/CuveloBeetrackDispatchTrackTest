@@ -1,7 +1,7 @@
 package com.cuvelo.beetrackdispatchtracktest.ui.viewmodel;
 
-import android.util.Log;
 
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.cuvelo.domain.AddressDomain;
@@ -12,18 +12,33 @@ import javax.inject.Inject;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
-public class MainViewModel extends ViewModel {
+public class GenerateBitcoinAddressViewModel extends ViewModel {
+
+    private static final String TAG = "GenerateBitcoinAddressViewModel";
+
+    public MutableLiveData<AddressDomain> addressMutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<Boolean> progressBarVisibility = new MutableLiveData<>(false);
 
     @Inject
     public GenerateAddressUseCase mGenerateAddressUseCase;
 
     @Inject
-    public MainViewModel(GenerateAddressUseCase generateAddressUseCase){
+    public GenerateBitcoinAddressViewModel(GenerateAddressUseCase generateAddressUseCase){
         this.mGenerateAddressUseCase = generateAddressUseCase;
     }
 
     public void generateBitcoinAddress(){
+        progressBarVisibility.setValue(true);
         mGenerateAddressUseCase.execute(new GenerateAddressUseCaseSubscriber(this));
+    }
+
+    public void processNewBtcAddress(AddressDomain address){
+        addressMutableLiveData.setValue(address);
+        progressBarVisibility.setValue(false);
+    }
+
+    public void saveBtcAddress(){
+
     }
 
     @Override
@@ -35,30 +50,27 @@ public class MainViewModel extends ViewModel {
     //region Subscriber classes
     static class GenerateAddressUseCaseSubscriber extends DefaultSubscriber<AddressDomain>{
 
-        final WeakReference<MainViewModel> viewModelWeakReference;
+        final WeakReference<GenerateBitcoinAddressViewModel> viewModelWeakReference;
 
-        public GenerateAddressUseCaseSubscriber(MainViewModel viewModelWeakReference) {
+        public GenerateAddressUseCaseSubscriber(GenerateBitcoinAddressViewModel viewModelWeakReference) {
             this.viewModelWeakReference = new WeakReference<>(viewModelWeakReference);
         }
 
         @Override
         public void onError(Throwable e) {
             super.onError(e);
-            Log.e("DEBUG", "ERROR");
         }
 
         @Override
         protected void onCompleted() {
             super.onCompleted();
-            Log.e("DEBUG", "onCompleted");
-
         }
 
         @Override
         public void onNext(AddressDomain address) {
             super.onNext(address);
-            Log.e("DEBUG", "onNext");
-            Log.e("DEBUG", address.address);
+            final GenerateBitcoinAddressViewModel viewModel = viewModelWeakReference.get();
+            viewModel.processNewBtcAddress(address);
         }
     }
 

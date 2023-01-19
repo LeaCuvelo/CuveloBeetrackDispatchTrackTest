@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">CuveloBeetrackDispatchtrackTest</string>
+    <string name="app_name">Cuvelo BeeTrack DispatchTrack Test</string>
+
+    <!-- Generate Bitcoin Address -->
+    <string name="wallet_bitcoin_title">BTC Address: </string>
+    <string name="generate_btc_address_button_text">Generate BTC Address</string>
+    <string name="save_current_btc_address_button_text">Save Current Address</string>
+    <string name="btc_address_qr_alt_text">Bitcoin QR Address</string>
+
+
+
 </resources>

@@ -2,6 +2,7 @@ plugins {
     id 'java-library'
 }
 def rx_java_version = '2.2.21'
+def javax_inject_version = '1'
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -12,6 +13,5 @@ dependencies{
     implementation project(path: ':domain')
     implementation project(path: ':data')
     implementation "io.reactivex.rxjava2:rxjava:$rx_java_version"
-    implementation 'javax.inject:javax.inject:1'
-
+    implementation "javax.inject:javax.inject:$javax_inject_version"
 }

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.cuvelo.beetrackdispatchtracktest.ui.viewmodel.GenerateBitcoinAddressViewModel"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.GenerateBitcoinAddressActivity">
+
+        <TextView
+            android:id="@+id/tv_btc_address_title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/wallet_bitcoin_title"
+            android:textSize="@dimen/title_size"
+            android:textColor="@color/accent_blue"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/main_margin"
+            android:layout_marginStart="@dimen/main_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/iv_btc_address_qr"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/main_margin"
+            android:layout_marginTop="@dimen/main_margin"
+            android:layout_marginEnd="@dimen/main_margin"
+            android:layout_marginBottom="@dimen/btc_address_margin_bottom"
+            android:contentDescription="@string/btc_address_qr_alt_text"
+            android:src="@drawable/ic_qr_code_placeholder"
+            app:layout_constraintBottom_toTopOf="@+id/tv_btc_address_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_btc_address_title" />
+
+
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/progressBarStyle"
+            android:visibility="@{viewModel.progressBarVisibility ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_btc_address_text"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/main_margin"
+            android:layout_marginEnd="@dimen/main_margin"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/btc_address_margin_bottom"
+            app:layout_constraintBottom_toTopOf="@+id/btn_save_btc_address"
+            android:textSize="@dimen/btc_address_size"
+            tools:text="mvphyDBzMAqiXrYXcXmtqZPVZhSn4kGUTj"
+            android:text="@{viewModel.addressMutableLiveData.address}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btn_save_btc_address"
+            android:text="@string/save_current_btc_address_button_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="@dimen/main_margin"
+            android:layout_marginStart="@dimen/main_margin"
+            android:layout_marginEnd="@dimen/buttons_separator_margin"
+            android:textAllCaps="false"
+            android:background="@drawable/button_background"
+            app:layout_constraintEnd_toStartOf="@+id/btn_generate_btc_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btn_generate_btc_address"
+            android:text="@string/generate_btc_address_button_text"
+            android:textAllCaps="false"
+            android:layout_marginEnd="@dimen/main_margin"
+            android:background="@drawable/button_background"
+            android:layout_marginStart="@dimen/buttons_separator_margin"
+            android:layout_marginBottom="@dimen/main_margin"
+            app:layout_constraintStart_toEndOf="@+id/btn_save_btc_address"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.generateBitcoinAddress() }" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

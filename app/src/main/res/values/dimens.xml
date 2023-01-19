@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Generate Bitcoin Address -->
+    <dimen name="main_margin">10dp</dimen>
+    <dimen name="title_size">25sp</dimen>
+    <dimen name="btc_address_size">15sp</dimen>
+    <dimen name="btc_address_margin_bottom">40dp</dimen>
+    <dimen name="buttons_separator_margin">5dp</dimen>
+
+
+
+</resources>
