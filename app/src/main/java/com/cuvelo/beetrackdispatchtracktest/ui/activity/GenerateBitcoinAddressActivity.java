@@ -1,15 +1,18 @@
 package com.cuvelo.beetrackdispatchtracktest.ui.activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.cuvelo.beetrackdispatchtracktest.R;
 import com.cuvelo.beetrackdispatchtracktest.databinding.ActivityGenerateBitcoinAddressBinding;
 import com.cuvelo.beetrackdispatchtracktest.ui.viewmodel.GenerateBitcoinAddressViewModel;
 import com.cuvelo.domain.AddressDomain;
@@ -55,9 +58,27 @@ public class GenerateBitcoinAddressActivity extends AppCompatActivity {
         }
     }
 
-    private void setupObservers() {
-        viewModel.addressMutableLiveData.observe(this,this::generateQRBtcAddress);
+    private void showSaveBtcAddressAlertDialog(Boolean visibility){
+        if(visibility && viewModel.addressMutableLiveData.getValue() != null){
+
+            AlertDialog.Builder confirmBtcAddressAlertDialogBuilder = new AlertDialog.Builder(this)
+                    .setMessage(getBaseContext().getString(R.string.btc_address_save_message, viewModel.addressMutableLiveData.getValue().address))
+                    .setPositiveButton(R.string.btc_address_save_confirm, (dialog, which) -> {
+                        dialog.cancel();
+                    })
+                    .setNegativeButton(R.string.btc_address_save_cancel, (dialog, which) -> {
+                        dialog.cancel();
+                    });
+
+            AlertDialog confirmBtcAddressAlertDialog = confirmBtcAddressAlertDialogBuilder.create();
+            confirmBtcAddressAlertDialog.setTitle(R.string.btc_address_save_title);
+            confirmBtcAddressAlertDialog.show();
+        }
     }
 
+    private void setupObservers() {
+        viewModel.addressMutableLiveData.observe(this,this::generateQRBtcAddress);
+        viewModel.saveAlertDialogVisibility.observe(this,this::showSaveBtcAddressAlertDialog);
+    }
 
 }

@@ -18,6 +18,7 @@ public class GenerateBitcoinAddressViewModel extends ViewModel {
 
     public MutableLiveData<AddressDomain> addressMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<Boolean> progressBarVisibility = new MutableLiveData<>(false);
+    public MutableLiveData<Boolean> saveAlertDialogVisibility = new MutableLiveData<>(false);
 
     @Inject
     public GenerateAddressUseCase mGenerateAddressUseCase;
@@ -38,7 +39,7 @@ public class GenerateBitcoinAddressViewModel extends ViewModel {
     }
 
     public void saveBtcAddress(){
-
+        saveAlertDialogVisibility.setValue(true);
     }
 
     @Override
