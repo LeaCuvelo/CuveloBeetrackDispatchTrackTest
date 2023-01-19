@@ -1,5 +1,6 @@
 package com.cuvelo.beetrackdispatchtracktest.ui.viewmodel;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
@@ -33,6 +34,11 @@ public class GenerateBitcoinAddressViewModel extends ViewModel {
     public SaveAddressUseCase mSaveAddressUseCase;
 
     @Inject
+    public SharedPreferences btcAddressSharedPreference;
+    private static final String BTC_ADDRESS_KEY = "BTC_ADDRESS_KEY";
+
+
+    @Inject
     public GenerateBitcoinAddressViewModel(GenerateAddressUseCase generateAddressUseCase){
         this.mGenerateAddressUseCase = generateAddressUseCase;
     }
@@ -64,10 +70,31 @@ public class GenerateBitcoinAddressViewModel extends ViewModel {
         saveAlertDialogVisibility.setValue(true);
     }
 
-    //TODO apply concurrency for this method
+    //TODO crash when try to store addrees in DB.
     public void storeCurrentBtcAddressInDB(){
-        mSaveAddressUseCase.setAddressDomain(addressMutableLiveData.getValue());
-        mSaveAddressUseCase.execute(new SaveAddressUseCaseSubscriber(this, mSaveAddressUseCase));
+        //Uncomment for CRASH
+//        mSaveAddressUseCase.setAddressDomain(addressMutableLiveData.getValue());
+//        mSaveAddressUseCase.execute(new SaveAddressUseCaseSubscriber(this, mSaveAddressUseCase));
+
+        storeBtcAddressInSharedPreferences();
+    }
+
+    public void storeBtcAddressInSharedPreferences(){
+        if(addressMutableLiveData.getValue() != null){
+            SharedPreferences.Editor myEdit = btcAddressSharedPreference.edit();
+            myEdit.putString(BTC_ADDRESS_KEY, addressMutableLiveData.getValue().address);
+            myEdit.apply();
+        }
+    }
+
+    private String readBtcAddressFromSharedPreferences(){
+        String btcAddress = btcAddressSharedPreference.getString(BTC_ADDRESS_KEY, "");
+        Log.d(TAG, "BTC ADDRESS: " + btcAddress);
+        return btcAddress;
+    }
+
+    public String isBtcAddressStored() {
+        return readBtcAddressFromSharedPreferences();
     }
 
     public void showErrorState(){
