@@ -4,6 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.cuvelo.beetrackdispatchtracktest.ui.viewmodel.BalanceFragmentViewModel"/>
+    </data>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -11,14 +18,92 @@
         tools:context=".ui.fragment.BalanceFragment">
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="BALANCE FRAGMENT"
+            android:id="@+id/tv_btc_address_text"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/address_text_margin_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!--    android:visibility="@{viewModel.errorStateVisibility ? View.GONE : View.VISIBLE}" -->
+
+        <ImageView
+            android:id="@+id/iv_btc_address_qr"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/main_margin"
+            android:layout_marginTop="@dimen/main_margin"
+            android:layout_marginEnd="@dimen/main_margin"
+            android:layout_marginBottom="@dimen/btc_address_margin_bottom"
+            android:contentDescription="@string/btc_address_qr_alt_text"
+            android:src="@drawable/ic_qr_code_placeholder"
+            app:layout_constraintTop_toBottomOf="@+id/tv_btc_address_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_balance_container"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_balance_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="@string/btc_wallet_balance_title"
+                android:textColor="@color/accent_blue"
+                android:textStyle="bold"
+                android:textSize="@dimen/address_text_balance_title_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_btc_wallet_balance"
+                android:layout_marginStart="@dimen/main_margin"
+                app:layout_constraintTop_toBottomOf="@+id/tv_balance_title"
+                android:layout_marginTop="@dimen/balance_values_margin_top"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="@dimen/balance_values_text_size"
+                tools:text="Balance: 0,000563 BTC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_btc_wallet_unconfirmed_balance"
+                app:layout_constraintTop_toBottomOf="@+id/tv_btc_wallet_balance"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/main_margin"
+                android:layout_marginTop="@dimen/balance_values_margin_top"
+                tools:text="Unconfirmed Balance: 0,00025 BTC"
+                android:textSize="@dimen/balance_values_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_btc_wallet_final_balance"
+                android:layout_marginStart="@dimen/main_margin"
+                android:layout_marginTop="@dimen/balance_values_margin_top"
+                app:layout_constraintTop_toBottomOf="@+id/tv_btc_wallet_unconfirmed_balance"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="@dimen/balance_values_text_size"
+                android:layout_marginBottom="@dimen/balance_values_margin_bottom"
+                tools:text="Total Balance: 0,000813 BTC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

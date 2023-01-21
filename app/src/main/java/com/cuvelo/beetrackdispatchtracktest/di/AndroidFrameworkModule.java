@@ -5,6 +5,8 @@ import static android.content.Context.MODE_PRIVATE;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.cuvelo.beetrackdispatchtracktest.ui.fragment.BalanceFragment;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -25,5 +27,6 @@ public class AndroidFrameworkModule {
     public SharedPreferences provideSharedPreferences(@ApplicationContext  Context context){
         return context.getSharedPreferences(BTC_SHARED_PREFERENCES_NAME, MODE_PRIVATE);
     }
+
 
 }

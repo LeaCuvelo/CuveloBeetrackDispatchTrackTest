@@ -11,5 +11,6 @@ public class HomeActivityViewModel extends ViewModel {
 
     @Inject
     public HomeActivityViewModel() {
+
     }
 }

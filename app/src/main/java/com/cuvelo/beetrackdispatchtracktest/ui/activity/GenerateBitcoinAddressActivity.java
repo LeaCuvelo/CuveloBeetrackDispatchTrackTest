@@ -23,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class GenerateBitcoinAddressActivity extends AppCompatActivity {
 
     private static final String TAG = "GenerateBtcAddrssActvty";
-    private static final String BTC_ADDRESS_EXTRA = "BTC_ADDRESS_EXTRA";
+    public static final String BTC_ADDRESS_EXTRA = "BTC_ADDRESS_EXTRA";
 
     private ActivityGenerateBitcoinAddressBinding binding;
     private GenerateBitcoinAddressViewModel viewModel;
@@ -50,7 +50,6 @@ public class GenerateBitcoinAddressActivity extends AppCompatActivity {
         binding = ActivityGenerateBitcoinAddressBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
 
         binding.setLifecycleOwner(this);
         binding.setViewModel(viewModel);

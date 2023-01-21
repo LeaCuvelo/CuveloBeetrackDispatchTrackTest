@@ -39,8 +39,8 @@ public class GenerateBitcoinAddressViewModel extends ViewModel {
 
 
     @Inject
-    public GenerateBitcoinAddressViewModel(GenerateAddressUseCase generateAddressUseCase){
-        this.mGenerateAddressUseCase = generateAddressUseCase;
+    public GenerateBitcoinAddressViewModel(){
+
     }
 
     //region LifeCycle Methods

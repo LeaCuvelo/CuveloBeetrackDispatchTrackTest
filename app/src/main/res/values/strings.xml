@@ -12,5 +12,11 @@
     <string name="btc_address_save_cancel">Cancel</string>
     <string name="btc_address_generate_error_state">An error occur trying to get BTC Address from Internet. \n Check your connection and try again later</string>
 
+    <!-- Wallet Balance -->
+    <string name="btc_wallet_balance_title">BTC Wallet Balance</string>
+    <string name="balance_tab_title">Balance</string>
+    <string name="history_tab_title">History</string>
+
+
 
 </resources>

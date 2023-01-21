@@ -11,5 +11,18 @@
     <dimen name="error_text_size">20sp</dimen>
 
 
+    <!-- Home -->
+    <dimen name="view_pager_margin_top">5dp</dimen>
+    <dimen name="tablayout_tab_indicator_height">5dp</dimen>
+
+    <!-- Balance -->
+    <dimen name="address_text_margin_top">15dp</dimen>
+    <dimen name="address_text_balance_title_text_size">25sp</dimen>
+    <dimen name="balance_values_margin_top">15dp</dimen>
+    <dimen name="balance_values_margin_bottom">15dp</dimen>
+    <dimen name="balance_values_text_size">17sp</dimen>
+
+
+
 
 </resources>

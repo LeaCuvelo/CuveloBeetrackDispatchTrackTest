@@ -4,6 +4,7 @@ import com.cuvelo.beetrackdispatchtracktest.data.BitcoinWalletRemoteServer;
 import com.cuvelo.beetrackdispatchtracktest.data.RemoteBitcoinWalletAddressDataSourceImpl;
 import com.cuvelo.beetrackdispatchtracktest.data.RemoteBitcoinWalletBalanceDataSourceImpl;
 import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressModelDataMapper;
+import com.cuvelo.beetrackdispatchtracktest.data.mappers.BalanceModelDataMapper;
 import com.cuvelo.data.datasources.RemoteBitcoinWalletAddressDataSource;
 import com.cuvelo.data.datasources.RemoteBitcoinWalletBalanceDataSource;
 import javax.inject.Named;
@@ -48,11 +49,12 @@ public class NetworkModule {
         return new RemoteBitcoinWalletAddressDataSourceImpl(bitcoinWalletRemoteServer, addressModelDataMapper);
     }
 
-    //TODO add arguments when implements feature
     @Provides
     @Singleton
-    public RemoteBitcoinWalletBalanceDataSource provideRemoteBitcoinWalletBalanceDataSource(){
-        return new RemoteBitcoinWalletBalanceDataSourceImpl();
+    public RemoteBitcoinWalletBalanceDataSource provideRemoteBitcoinWalletBalanceDataSource(BitcoinWalletRemoteServer bitcoinWalletRemoteServer,
+                                                                                            BalanceModelDataMapper balanceModelDataMapper ){
+        return new RemoteBitcoinWalletBalanceDataSourceImpl(bitcoinWalletRemoteServer, balanceModelDataMapper);
     }
+
 
 }

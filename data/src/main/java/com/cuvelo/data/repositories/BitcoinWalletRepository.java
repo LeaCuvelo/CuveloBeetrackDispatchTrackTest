@@ -5,6 +5,8 @@ import com.cuvelo.data.datasources.LocalBitcoinWalletBalanceDataSource;
 import com.cuvelo.data.datasources.RemoteBitcoinWalletAddressDataSource;
 import com.cuvelo.data.datasources.RemoteBitcoinWalletBalanceDataSource;
 import com.cuvelo.domain.AddressDomain;
+import com.cuvelo.domain.BalanceDomain;
+import com.cuvelo.domain.FullBalanceDomain;
 
 import io.reactivex.Observable;
 
@@ -54,6 +56,14 @@ public class BitcoinWalletRepository {
     //TODO return values to success or error
     public void saveBitcoinWalletAddress(AddressDomain addressDomain){
         mLocalBitcoinWalletAddressDataSource.saveBitcoinWalletAddress(addressDomain);
+    }
+
+    public Observable<BalanceDomain> getBalanceByAddressFromApi(String address){
+        return mRemoteBitcoinWalletBalanceDataSource.getBalance(address);
+    }
+
+    public Observable<FullBalanceDomain> getFullBalanceByAddressFromApi(String address){
+        return mRemoteBitcoinWalletBalanceDataSource.getFullBalance(address);
     }
 
 
