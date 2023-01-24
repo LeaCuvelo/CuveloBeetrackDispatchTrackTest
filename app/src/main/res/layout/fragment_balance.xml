@@ -62,12 +62,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/progressBarStyle"
+            android:visibility="@{balanceViewModel.progressBarVisibility ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_balance_container"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:visibility="@{balanceViewModel.progressBarVisibility ? View.GONE : View.VISIBLE}"
+            android:visibility="@{balanceViewModel.progressBarVisibility ? View.INVISIBLE : View.VISIBLE}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -98,7 +109,7 @@
             <TextView
                 android:id="@+id/tv_btc_wallet_balance"
                 android:layout_marginStart="@dimen/main_margin"
-                android:text="@{balanceViewModel.btcBalanceMutableLiveData.balance.toString()}"
+                android:text="@{balanceViewModel.btcBalanceMutableLiveData.balance.toString() + ` BTC`}"
                 app:layout_constraintStart_toEndOf="@+id/tv_balance_value_title"
                 android:textSize="@dimen/balance_values_text_size"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_balance_value_title"
@@ -126,7 +137,7 @@
                 android:layout_marginTop="@dimen/balance_values_margin_top"
                 tools:text="0,00025 BTC"
                 android:textSize="@dimen/balance_values_text_size"
-                android:text="@{balanceViewModel.btcBalanceMutableLiveData.unconfirmedBalance.toString()}"
+                android:text="@{balanceViewModel.btcBalanceMutableLiveData.unconfirmedBalance.toString() + ` BTC`}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -150,23 +161,11 @@
                 android:layout_marginTop="@dimen/balance_values_margin_top"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_total_balance_value_title"
                 app:layout_constraintStart_toEndOf="@+id/tv_total_balance_value_title"
-                android:text="@{balanceViewModel.btcBalanceMutableLiveData.finalBalance.toString()}"
+                android:text="@{balanceViewModel.btcBalanceMutableLiveData.finalBalance.toString() + ` BTC`}"
                 android:textSize="@dimen/balance_values_text_size"
                 tools:text="0,000813 BTC"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-
-            <ProgressBar
-                android:id="@+id/pb_loading"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="?android:attr/progressBarStyle"
-                tools:visibility="gone"
-                android:visibility="@{balanceViewModel.progressBarVisibility ? View.VISIBLE : View.GONE}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <!-- Error message -->
             <LinearLayout
