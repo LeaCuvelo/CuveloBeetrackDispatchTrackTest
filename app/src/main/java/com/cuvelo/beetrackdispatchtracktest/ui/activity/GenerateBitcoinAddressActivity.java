@@ -39,8 +39,6 @@ public class GenerateBitcoinAddressActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        //TODO change the way, how we check the state of BTC address
-
         viewModel = new ViewModelProvider(this).get(GenerateBitcoinAddressViewModel.class);
         String btcAddress = viewModel.isBtcAddressStored();
         if(!btcAddress.isEmpty()){

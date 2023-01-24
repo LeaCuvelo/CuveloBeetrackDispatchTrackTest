@@ -49,7 +49,7 @@ public class BitcoinWalletRepository {
         return mRemoteBitcoinWalletAddressDataSource.generateBitcoinWalletAddress();
     }
 
-    public AddressDomain getBitcoinWalletAddressFromDataBase(){
+    public Observable<AddressDomain> getBitcoinWalletAddressFromDataBase(){
         return mLocalBitcoinWalletAddressDataSource.getBitcoinWalletAddress();
     }
 

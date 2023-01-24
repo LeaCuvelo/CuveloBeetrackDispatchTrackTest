@@ -5,8 +5,11 @@ import com.cuvelo.domain.AddressDomain;
 import com.cuvelo.usecases.executor.PostExecutionThread;
 import com.cuvelo.usecases.executor.ThreadExecutor;
 
+import java.util.concurrent.Callable;
+
 import io.reactivex.Completable;
 
+//TODO delete this class
 public class SaveAddressUseCase  extends CompletableUseCase {
 
     private final BitcoinWalletRepository mBitcoinWalletRepository;
@@ -25,9 +28,16 @@ public class SaveAddressUseCase  extends CompletableUseCase {
     }
 
     //TODO return values to success or error
+    //TODO implement handle excpeption
     @Override
     protected Completable buildUseCaseObservable() {
-       mBitcoinWalletRepository.saveBitcoinWalletAddress(addressDomain);
-       return null;
+
+        return Completable.fromCallable(new Callable<Object>() {
+            @Override
+            public Object call() throws Exception {
+                mBitcoinWalletRepository.saveBitcoinWalletAddress(addressDomain);
+                return this;
+            }
+        });
     }
 }

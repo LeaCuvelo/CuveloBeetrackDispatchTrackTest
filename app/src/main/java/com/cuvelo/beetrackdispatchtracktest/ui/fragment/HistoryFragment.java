@@ -13,8 +13,12 @@ import com.cuvelo.beetrackdispatchtracktest.R;
 
 public class HistoryFragment extends Fragment {
 
-    public HistoryFragment() {
+    private final String btcAddress;
+
+    public HistoryFragment(String btcAddress) {
+        this.btcAddress = btcAddress;
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

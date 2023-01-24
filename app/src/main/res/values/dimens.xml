@@ -17,9 +17,11 @@
 
     <!-- Balance -->
     <dimen name="address_text_margin_top">15dp</dimen>
+    <dimen name="address_text_title_margin_top">5dp</dimen>
     <dimen name="address_text_balance_title_text_size">25sp</dimen>
     <dimen name="balance_values_margin_top">15dp</dimen>
     <dimen name="balance_values_margin_bottom">15dp</dimen>
+    <dimen name="balance_title_text_size">20sp</dimen>
     <dimen name="balance_values_text_size">17sp</dimen>
 
 

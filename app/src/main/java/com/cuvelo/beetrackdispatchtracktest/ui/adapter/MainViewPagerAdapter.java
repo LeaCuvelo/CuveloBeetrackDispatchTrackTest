@@ -11,6 +11,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class MainViewPagerAdapter extends FragmentStateAdapter {
 
+    public String btcAddress;
+
     public MainViewPagerAdapter(@NonNull @NotNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
@@ -20,9 +22,9 @@ public class MainViewPagerAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         if (position == 0) {
-            return new BalanceFragment();
+            return new BalanceFragment(btcAddress);
         }
-        return new HistoryFragment();
+        return new HistoryFragment(btcAddress);
     }
 
     @Override
@@ -30,5 +32,11 @@ public class MainViewPagerAdapter extends FragmentStateAdapter {
         return 2;
     }
 
+    public String getBtcAddress() {
+        return btcAddress;
+    }
 
+    public void setBtcAddress(String btcAddress) {
+        this.btcAddress = btcAddress;
+    }
 }

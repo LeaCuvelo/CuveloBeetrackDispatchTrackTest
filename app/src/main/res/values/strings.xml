@@ -11,11 +11,21 @@
     <string name="btc_address_save_confirm">Accept</string>
     <string name="btc_address_save_cancel">Cancel</string>
     <string name="btc_address_generate_error_state">An error occur trying to get BTC Address from Internet. \n Check your connection and try again later</string>
+    <string name="btc_error_icon_alt_text">Error icon</string>
 
     <!-- Wallet Balance -->
     <string name="btc_wallet_balance_title">BTC Wallet Balance</string>
+    <string name="btc_wallet_balance_address_title">Your Address</string>
     <string name="balance_tab_title">Balance</string>
     <string name="history_tab_title">History</string>
+    <string name="balance_error_message">An error occur trying to get Wallet Balance \n Check your connection and try again later</string>
+    <string name="balance_balance_title">Balance: </string>
+    <string name="balance_unconfirmed_balance_title">Unconfirmed Balance: </string>
+    <string name="balance_total_balance_title">Total Balance: </string>
+
+
+    <!-- Wallet History -->
+    <string name="btc_wallet_history_title">BTC Wallet Transaction History</string>
 
 
 

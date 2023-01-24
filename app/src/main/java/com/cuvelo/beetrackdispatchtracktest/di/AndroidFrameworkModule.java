@@ -4,9 +4,6 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
-import com.cuvelo.beetrackdispatchtracktest.ui.fragment.BalanceFragment;
-
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -19,14 +16,12 @@ import dagger.hilt.components.SingletonComponent;
 @InstallIn(SingletonComponent.class)
 public class AndroidFrameworkModule {
 
-    private static final String BTC_SHARED_PREFERENCES_NAME = "BTC_ADDRESS_SHARED_PREFERENCE";
-
+    private final String BTC_SHARED_PREFERENCES_NAME = "BTC_ADDRESS_SHARED_PREFERENCE";
 
     @Provides
     @Singleton
     public SharedPreferences provideSharedPreferences(@ApplicationContext  Context context){
         return context.getSharedPreferences(BTC_SHARED_PREFERENCES_NAME, MODE_PRIVATE);
     }
-
 
 }

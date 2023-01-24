@@ -14,7 +14,7 @@ public interface BitcoinWalletRemoteServer {
     @POST("addrs")
     Observable<AddressModel> generateBitcoinAddress();
 
-    @GET("{address}/balance")
+    @GET("addrs/{address}/balance")
     Observable<BalanceModel> getBitcoinWalletBalance(@Path("address") String address);
 
 }

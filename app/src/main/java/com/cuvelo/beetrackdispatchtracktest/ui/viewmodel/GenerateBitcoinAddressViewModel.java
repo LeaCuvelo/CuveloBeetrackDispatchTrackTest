@@ -7,11 +7,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.cuvelo.domain.AddressDomain;
-import com.cuvelo.usecases.interactor.CompletableUseCase;
-import com.cuvelo.usecases.interactor.DefaultCompletableSubscriber;
 import com.cuvelo.usecases.interactor.DefaultSubscriber;
 import com.cuvelo.usecases.interactor.GenerateAddressUseCase;
-import com.cuvelo.usecases.interactor.SaveAddressUseCase;
 
 import java.lang.ref.WeakReference;
 import javax.inject.Inject;
@@ -31,16 +28,11 @@ public class GenerateBitcoinAddressViewModel extends ViewModel {
     public GenerateAddressUseCase mGenerateAddressUseCase;
 
     @Inject
-    public SaveAddressUseCase mSaveAddressUseCase;
-
-    @Inject
     public SharedPreferences btcAddressSharedPreference;
     private static final String BTC_ADDRESS_KEY = "BTC_ADDRESS_KEY";
 
-
     @Inject
     public GenerateBitcoinAddressViewModel(){
-
     }
 
     //region LifeCycle Methods
@@ -70,12 +62,7 @@ public class GenerateBitcoinAddressViewModel extends ViewModel {
         saveAlertDialogVisibility.setValue(true);
     }
 
-    //TODO crash when try to store addrees in DB.
     public void storeCurrentBtcAddressInDB(){
-        //Uncomment for CRASH
-//        mSaveAddressUseCase.setAddressDomain(addressMutableLiveData.getValue());
-//        mSaveAddressUseCase.execute(new SaveAddressUseCaseSubscriber(this, mSaveAddressUseCase));
-
         storeBtcAddressInSharedPreferences();
     }
 
@@ -105,6 +92,7 @@ public class GenerateBitcoinAddressViewModel extends ViewModel {
     //endregion Public Methods
 
     //region Subscriber classes
+
     static class GenerateAddressUseCaseSubscriber extends DefaultSubscriber<AddressDomain>{
 
         final WeakReference<GenerateBitcoinAddressViewModel> viewModelWeakReference;
@@ -134,31 +122,5 @@ public class GenerateBitcoinAddressViewModel extends ViewModel {
         }
     }
 
-    static class SaveAddressUseCaseSubscriber extends DefaultCompletableSubscriber {
-
-        final WeakReference<GenerateBitcoinAddressViewModel> viewModelWeakReference;
-        final CompletableUseCase useCase;
-
-        public SaveAddressUseCaseSubscriber(GenerateBitcoinAddressViewModel viewModelWeakReference, CompletableUseCase useCase) {
-            this.viewModelWeakReference = new WeakReference<>(viewModelWeakReference);
-            this.useCase = useCase;
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            super.onError(e);
-            Log.e(TAG, e.getClass().getSimpleName() + ": " + e.getMessage());
-        }
-
-        @Override
-        protected void onCompleted() {
-            super.onCompleted();
-            Log.d(TAG, "Stored in DB");
-        }
-
-
-    }
-
     //endregion Subscriber classes
-
 }

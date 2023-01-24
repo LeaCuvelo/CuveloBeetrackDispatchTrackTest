@@ -3,9 +3,9 @@ package com.cuvelo.domain;
 public class BalanceDomain {
 
     public String address;
-    public int balance;
-    public int unconfirmedBalance;
-    public int finalBalance;
+    public String balance;
+    public String unconfirmedBalance;
+    public String finalBalance;
 
     public String getAddress() {
         return address;
@@ -15,27 +15,27 @@ public class BalanceDomain {
         this.address = address;
     }
 
-    public int getBalance() {
+    public String getBalance() {
         return balance;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(String balance) {
         this.balance = balance;
     }
 
-    public int getUnconfirmedBalance() {
+    public String getUnconfirmedBalance() {
         return unconfirmedBalance;
     }
 
-    public void setUnconfirmedBalance(int unconfirmedBalance) {
+    public void setUnconfirmedBalance(String unconfirmedBalance) {
         this.unconfirmedBalance = unconfirmedBalance;
     }
 
-    public int getFinalBalance() {
+    public String getFinalBalance() {
         return finalBalance;
     }
 
-    public void setFinalBalance(int finalBalance) {
+    public void setFinalBalance(String finalBalance) {
         this.finalBalance = finalBalance;
     }
 }

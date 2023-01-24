@@ -4,20 +4,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="balanceViewModel"
+            type="com.cuvelo.beetrackdispatchtracktest.ui.viewmodel.BalanceFragmentViewModel"/>
+
+    </data>
+
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.fragment.HistoryFragment">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_history_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/btc_wallet_history_title"
+            android:textColor="@color/accent_blue"
+            android:textStyle="bold"
+            android:textSize="@dimen/address_text_balance_title_text_size"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="HISTORY FRAGMENT"
+            android:layout_height="wrap_content"/>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/srl_balance_list_refresh_container"
+            app:layout_constraintTop_toBottomOf="@+id/tv_history_title"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_margin="@dimen/main_margin"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_history_transactions"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

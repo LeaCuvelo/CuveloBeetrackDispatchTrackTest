@@ -89,6 +89,7 @@
                 android:id="@+id/iv_btc_address_generation_error_icon"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_error"
+                android:contentDescription="@string/btc_error_icon_alt_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

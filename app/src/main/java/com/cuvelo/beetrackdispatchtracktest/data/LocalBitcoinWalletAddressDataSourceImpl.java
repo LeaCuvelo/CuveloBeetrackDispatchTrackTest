@@ -25,8 +25,8 @@ public class LocalBitcoinWalletAddressDataSourceImpl implements LocalBitcoinWall
     }
 
     @Override
-    public AddressDomain getBitcoinWalletAddress() {
-        return addressEntityDataMapper.transform(addressDao.getBtcAddress());
+    public Observable<AddressDomain> getBitcoinWalletAddress() {
+        return Observable.just(addressEntityDataMapper.transform(addressDao.getBtcAddress()));
     }
 
     @Override

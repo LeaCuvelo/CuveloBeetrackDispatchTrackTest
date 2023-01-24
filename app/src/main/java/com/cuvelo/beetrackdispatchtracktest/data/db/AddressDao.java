@@ -10,6 +10,7 @@ import com.cuvelo.beetrackdispatchtracktest.data.db.entities.AddressEntity;
 @Dao
 public interface AddressDao {
 
+    //TODO change this query, only one address will be stored in DB
     @Query("SELECT * FROM addressentity")
     AddressEntity getBtcAddress();
 
