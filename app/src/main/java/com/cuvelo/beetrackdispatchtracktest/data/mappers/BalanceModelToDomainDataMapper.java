@@ -5,7 +5,7 @@ import com.cuvelo.domain.BalanceDomain;
 
 import java.text.DecimalFormat;
 
-public class BalanceModelDataMapper implements Transformer<BalanceDomain, BalanceModel> {
+public class BalanceModelToDomainDataMapper implements Transformer<BalanceDomain, BalanceModel> {
 
     private final int SATOSHIS_FACTOR_CONVERTION = 100000000;
 
@@ -16,8 +16,8 @@ public class BalanceModelDataMapper implements Transformer<BalanceDomain, Balanc
 
         BalanceDomain balanceDomain = new BalanceDomain();
         balanceDomain.address = model.address;
-        balanceDomain.balance = decimalFormat.format((double) model.balance / SATOSHIS_FACTOR_CONVERTION) ;
-        balanceDomain.unconfirmedBalance =  decimalFormat.format((double) model.unconfirmedBalance / SATOSHIS_FACTOR_CONVERTION) ;
+        balanceDomain.balance = decimalFormat.format((double) model.balance / SATOSHIS_FACTOR_CONVERTION);
+        balanceDomain.unconfirmedBalance =  decimalFormat.format((double) model.unconfirmedBalance / SATOSHIS_FACTOR_CONVERTION);
         balanceDomain.finalBalance = decimalFormat.format((double) model.finalBalance / SATOSHIS_FACTOR_CONVERTION );
         return balanceDomain;
     }

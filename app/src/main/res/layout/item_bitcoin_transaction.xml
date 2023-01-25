@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="bitcoinTransaction"
+            type="com.cuvelo.domain.BitcoinTransactionDomain" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tx_item_height"
+        android:layout_margin="@dimen/tx_item_margin">
+
+        <TextView
+            android:id="@+id/tv_transaction_date"
+            tools:text="1/1/2023"
+            android:textColor="@color/accent_blue"
+            android:textStyle="bold"
+            android:text="@{bitcoinTransaction.timestampConfirmed}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="@dimen/tx_item_text_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_transaction_amount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_transaction_date"
+            android:layout_marginTop="@dimen/main_margin"
+            tools:text="0,00008 BTC"
+            android:text="@{bitcoinTransaction.total + ` BTC`}"
+            android:textColor="@color/main_green"
+            android:textSize="@dimen/tx_item_text_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_unconfirmed_transaction_badge"
+            android:visibility="@{bitcoinTransaction.unconfirmed ? View.VISIBLE : View.GONE}"
+            android:textStyle="italic"
+            app:layout_constraintTop_toBottomOf="@+id/tv_transaction_amount"
+            android:text="@string/btc_wallet_history_item_transaction_not_confirmed"
+            android:textColor="@color/not_confirmed_orange"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:id="@+id/v_item_divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/black_with_opacity"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

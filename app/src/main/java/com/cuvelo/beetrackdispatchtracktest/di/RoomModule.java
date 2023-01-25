@@ -8,8 +8,8 @@ import com.cuvelo.beetrackdispatchtracktest.data.LocalBitcoinWalletAddressDataSo
 import com.cuvelo.beetrackdispatchtracktest.data.LocalBitcoinWalletBalanceDataSourceImpl;
 import com.cuvelo.beetrackdispatchtracktest.data.db.AddressDao;
 import com.cuvelo.beetrackdispatchtracktest.data.db.BeetrackDispatchtrackDatabase;
-import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressDomainDataMapper;
-import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressEntityDataMapper;
+import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressDomainToEntityDataMapper;
+import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressEntityToDomainDataMapper;
 import com.cuvelo.data.datasources.LocalBitcoinWalletAddressDataSource;
 import com.cuvelo.data.datasources.LocalBitcoinWalletBalanceDataSource;
 
@@ -42,8 +42,8 @@ public class RoomModule {
     @Provides
     @Singleton
     public LocalBitcoinWalletAddressDataSource provideLocalBitcoinWalletAddressDataSource(AddressDao addressDao,
-                                                                                          AddressEntityDataMapper addressEntityDataMapper,
-                                                                                          AddressDomainDataMapper addressDomainDataMapper){
+                                                                                          AddressEntityToDomainDataMapper addressEntityDataMapper,
+                                                                                          AddressDomainToEntityDataMapper addressDomainDataMapper){
         return new LocalBitcoinWalletAddressDataSourceImpl(addressDao, addressEntityDataMapper, addressDomainDataMapper);
     }
 

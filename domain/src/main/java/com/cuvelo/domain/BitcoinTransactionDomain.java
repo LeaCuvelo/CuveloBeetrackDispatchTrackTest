@@ -2,22 +2,40 @@ package com.cuvelo.domain;
 
 public class BitcoinTransactionDomain {
 
-    public int total;
-    public String confirmed;
+    private String total;
+    private String timestampConfirmed;
+    private boolean unconfirmed;
 
-    public int getTotal() {
+    public String getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(String total) {
         this.total = total;
     }
 
-    public String getConfirmed() {
-        return confirmed;
+    public String getTimestampConfirmed() {
+        return timestampConfirmed;
     }
 
-    public void setConfirmed(String confirmed) {
-        this.confirmed = confirmed;
+    public void setTimestampConfirmed(String timestampConfirmed) {
+        this.timestampConfirmed = timestampConfirmed;
+    }
+
+    public boolean isUnconfirmed() {
+        return unconfirmed;
+    }
+
+    public void setUnconfirmed(boolean unconfirmed) {
+        this.unconfirmed = unconfirmed;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj != null && this.getClass() == obj.getClass()){
+            BitcoinTransactionDomain object = (BitcoinTransactionDomain) obj;
+            return this.total.equals(object.total) && this.timestampConfirmed.equals(object.timestampConfirmed);
+        }
+        return false;
     }
 }

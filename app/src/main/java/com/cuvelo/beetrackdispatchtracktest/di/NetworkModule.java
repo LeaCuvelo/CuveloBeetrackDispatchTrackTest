@@ -3,8 +3,9 @@ package com.cuvelo.beetrackdispatchtracktest.di;
 import com.cuvelo.beetrackdispatchtracktest.data.BitcoinWalletRemoteServer;
 import com.cuvelo.beetrackdispatchtracktest.data.RemoteBitcoinWalletAddressDataSourceImpl;
 import com.cuvelo.beetrackdispatchtracktest.data.RemoteBitcoinWalletBalanceDataSourceImpl;
-import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressModelDataMapper;
-import com.cuvelo.beetrackdispatchtracktest.data.mappers.BalanceModelDataMapper;
+import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressModelToDomainDataMapper;
+import com.cuvelo.beetrackdispatchtracktest.data.mappers.BalanceModelToDomainDataMapper;
+import com.cuvelo.beetrackdispatchtracktest.data.mappers.FullBalanceModelToDomainDataMapper;
 import com.cuvelo.data.datasources.RemoteBitcoinWalletAddressDataSource;
 import com.cuvelo.data.datasources.RemoteBitcoinWalletBalanceDataSource;
 import javax.inject.Named;
@@ -45,16 +46,16 @@ public class NetworkModule {
     @Provides
     @Singleton
     public RemoteBitcoinWalletAddressDataSource provideRemoteBitcoinWalletAddressDataSource(BitcoinWalletRemoteServer bitcoinWalletRemoteServer,
-                                                                                            AddressModelDataMapper addressModelDataMapper ){
+                                                                                            AddressModelToDomainDataMapper addressModelDataMapper ){
         return new RemoteBitcoinWalletAddressDataSourceImpl(bitcoinWalletRemoteServer, addressModelDataMapper);
     }
 
     @Provides
     @Singleton
     public RemoteBitcoinWalletBalanceDataSource provideRemoteBitcoinWalletBalanceDataSource(BitcoinWalletRemoteServer bitcoinWalletRemoteServer,
-                                                                                            BalanceModelDataMapper balanceModelDataMapper ){
-        return new RemoteBitcoinWalletBalanceDataSourceImpl(bitcoinWalletRemoteServer, balanceModelDataMapper);
+                                                                                            BalanceModelToDomainDataMapper balanceModelDataMapper,
+                                                                                            FullBalanceModelToDomainDataMapper fullBalanceModelToDomainDataMapper){
+        return new RemoteBitcoinWalletBalanceDataSourceImpl(bitcoinWalletRemoteServer, balanceModelDataMapper, fullBalanceModelToDomainDataMapper);
     }
-
 
 }

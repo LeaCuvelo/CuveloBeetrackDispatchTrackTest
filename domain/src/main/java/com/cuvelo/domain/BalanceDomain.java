@@ -38,4 +38,17 @@ public class BalanceDomain {
     public void setFinalBalance(String finalBalance) {
         this.finalBalance = finalBalance;
     }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj != null && this.getClass() == obj.getClass()){
+            BalanceDomain object = (BalanceDomain) obj;
+            return this.address.equals(object.address) && this.balance.equals(object.balance)
+                    && this.unconfirmedBalance.equals(object.unconfirmedBalance)
+                    && this.finalBalance.equals(object.finalBalance);
+        }
+        return false;
+    }
+
 }

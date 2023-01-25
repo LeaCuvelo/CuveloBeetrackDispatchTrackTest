@@ -1,6 +1,6 @@
 package com.cuvelo.beetrackdispatchtracktest.data;
 
-import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressModelDataMapper;
+import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressModelToDomainDataMapper;
 import com.cuvelo.data.datasources.RemoteBitcoinWalletAddressDataSource;
 import com.cuvelo.domain.AddressDomain;
 
@@ -10,11 +10,11 @@ public class RemoteBitcoinWalletAddressDataSourceImpl implements RemoteBitcoinWa
 
     private String TAG = "RemoteBitcoinWalletAddressDataSourceImpl";
     private final BitcoinWalletRemoteServer bitcoinWalletRemoteServer;
-    private final AddressModelDataMapper addressModelDataMapper;
+    private final AddressModelToDomainDataMapper addressModelDataMapper;
 
 
     public RemoteBitcoinWalletAddressDataSourceImpl(BitcoinWalletRemoteServer mBitcoinWalletRemoteServer,
-                                                    AddressModelDataMapper mAddressModelDataMapper) {
+                                                    AddressModelToDomainDataMapper mAddressModelDataMapper) {
         this.bitcoinWalletRemoteServer = mBitcoinWalletRemoteServer;
         this.addressModelDataMapper = mAddressModelDataMapper;
     }

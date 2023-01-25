@@ -17,8 +17,6 @@ import android.view.ViewGroup;
 import com.cuvelo.beetrackdispatchtracktest.R;
 import com.cuvelo.beetrackdispatchtracktest.databinding.FragmentBalanceBinding;
 import com.cuvelo.beetrackdispatchtracktest.ui.viewmodel.BalanceFragmentViewModel;
-import com.cuvelo.beetrackdispatchtracktest.ui.viewmodel.HomeActivityViewModel;
-import com.cuvelo.domain.AddressDomain;
 import com.google.zxing.BarcodeFormat;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
@@ -26,21 +24,20 @@ import org.jetbrains.annotations.NotNull;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
-
 @AndroidEntryPoint
 public class BalanceFragment extends Fragment {
 
     private static final String TAG = "BalanceFragment";
 
-
     private FragmentBalanceBinding binding;
-    private HomeActivityViewModel homeActivityViewModel;
     private BalanceFragmentViewModel balanceFragmentViewModel;
     private final String btcAddress;
 
     public BalanceFragment(String btcAddress) {
         this.btcAddress = btcAddress;
     }
+
+    //region Lifecycle Methods
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,20 +62,21 @@ public class BalanceFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        homeActivityViewModel = new ViewModelProvider(this).get(HomeActivityViewModel.class);
         balanceFragmentViewModel = new ViewModelProvider(this).get(BalanceFragmentViewModel.class);
 
         binding.setBalanceViewModel(balanceFragmentViewModel);
-        binding.setHomeActivityViewModel(homeActivityViewModel);
-
         setupObservers();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-       balanceFragmentViewModel.getBitcoinWalletBalance(btcAddress);
+        balanceFragmentViewModel.getBitcoinWalletBalance(btcAddress);
     }
+
+    //endregion Lifecycle Methods
+
+    //region Private Methods
 
     private void setupObservers() {
         balanceFragmentViewModel.addressMutableLiveData.observe(getViewLifecycleOwner(),this::generateQRBtcAddress);
@@ -93,4 +91,7 @@ public class BalanceFragment extends Fragment {
             Log.e(TAG, e.getClass().getSimpleName() + ": " + e.getMessage());
         }
     }
+
+    //endregion Private Methods
+
 }

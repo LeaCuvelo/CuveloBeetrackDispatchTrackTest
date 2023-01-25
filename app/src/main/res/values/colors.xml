@@ -4,8 +4,13 @@
     <color name="main_gold">#f79d22</color>
     <color name="variant_accent">#b5b6c5</color>
     <color name="black">#FF000000</color>
+    <color name="black_with_opacity">#59000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red_alert">#C61A1A</color>
+    <color name="main_green">#009135</color>
+    <color name="btc_custom_green">#13CD9B</color>
+    <color name="not_confirmed_orange">#FF5722</color>
+
 
 
 </resources>

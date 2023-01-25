@@ -26,6 +26,9 @@
 
     <!-- Wallet History -->
     <string name="btc_wallet_history_title">BTC Wallet Transaction History</string>
+    <string name="btc_wallet_history_message">Unconfirmed transaction will be displayed without datetime</string>
+    <string name="btc_wallet_history_btc_logo_alt_text">Bitcoin Logo</string>
+    <string name="btc_wallet_history_item_transaction_not_confirmed">Transaction not confirmed yet</string>
 
 
 

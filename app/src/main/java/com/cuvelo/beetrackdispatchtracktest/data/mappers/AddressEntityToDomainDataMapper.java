@@ -3,7 +3,7 @@ package com.cuvelo.beetrackdispatchtracktest.data.mappers;
 import com.cuvelo.beetrackdispatchtracktest.data.db.entities.AddressEntity;
 import com.cuvelo.domain.AddressDomain;
 
-public class AddressEntityDataMapper implements  Transformer<AddressDomain, AddressEntity>{
+public class AddressEntityToDomainDataMapper implements  Transformer<AddressDomain, AddressEntity>{
 
     @Override
     public AddressDomain transform(AddressEntity entity) {

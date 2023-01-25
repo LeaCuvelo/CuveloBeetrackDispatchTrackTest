@@ -11,10 +11,6 @@
             name="balanceViewModel"
             type="com.cuvelo.beetrackdispatchtracktest.ui.viewmodel.BalanceFragmentViewModel"/>
 
-        <variable
-            name="homeActivityViewModel"
-            type="com.cuvelo.beetrackdispatchtracktest.ui.viewmodel.HomeActivityViewModel"/>
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

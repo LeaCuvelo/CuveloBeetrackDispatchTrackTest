@@ -9,12 +9,10 @@
         <import type="android.view.View"/>
 
         <variable
-            name="balanceViewModel"
-            type="com.cuvelo.beetrackdispatchtracktest.ui.viewmodel.BalanceFragmentViewModel"/>
+            name="historyViewModel"
+            type="com.cuvelo.beetrackdispatchtracktest.ui.viewmodel.HistoryFragmentViewModel"/>
 
     </data>
-
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -33,9 +31,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+        <ImageView
+            android:id="@+id/iv_btc_logo"
+            app:layout_constraintTop_toBottomOf="@+id/tv_history_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_bitcoin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/btc_wallet_history_btc_logo_alt_text" />
+
+        <TextView
+            android:id="@+id/tv_history_message"
+            app:layout_constraintEnd_toStartOf="@+id/iv_btc_logo"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_btc_logo"
+            app:layout_constraintTop_toTopOf="@+id/iv_btc_logo"
+            android:textColor="@color/not_confirmed_orange"
+            android:textStyle="italic"
+            android:text="@string/btc_wallet_history_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/srl_balance_list_refresh_container"
-            app:layout_constraintTop_toBottomOf="@+id/tv_history_title"
+            app:layout_constraintTop_toBottomOf="@+id/iv_btc_logo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -50,11 +68,17 @@
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/progressBarStyle"
+            android:visibility="@{historyViewModel.progressBarVisibility ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
 </layout>
-
-
-
-

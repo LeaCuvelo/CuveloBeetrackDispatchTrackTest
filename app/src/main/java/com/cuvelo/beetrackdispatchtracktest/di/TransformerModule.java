@@ -1,9 +1,10 @@
 package com.cuvelo.beetrackdispatchtracktest.di;
 
-import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressDomainDataMapper;
-import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressEntityDataMapper;
-import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressModelDataMapper;
-import com.cuvelo.beetrackdispatchtracktest.data.mappers.BalanceModelDataMapper;
+import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressDomainToEntityDataMapper;
+import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressEntityToDomainDataMapper;
+import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressModelToDomainDataMapper;
+import com.cuvelo.beetrackdispatchtracktest.data.mappers.BalanceModelToDomainDataMapper;
+import com.cuvelo.beetrackdispatchtracktest.data.mappers.FullBalanceModelToDomainDataMapper;
 
 import javax.inject.Singleton;
 
@@ -18,26 +19,33 @@ public class TransformerModule {
 
     @Provides
     @Singleton
-    public AddressModelDataMapper provideAddressModelDataMapper(){
-        return new AddressModelDataMapper();
+    public AddressModelToDomainDataMapper provideAddressModelDataMapper(){
+        return new AddressModelToDomainDataMapper();
     }
 
     @Provides
     @Singleton
-    public AddressEntityDataMapper provideAddressEntityDataMapper(){
-        return new AddressEntityDataMapper();
+    public AddressEntityToDomainDataMapper provideAddressEntityDataMapper(){
+        return new AddressEntityToDomainDataMapper();
     }
 
     @Provides
     @Singleton
-    public AddressDomainDataMapper provideAddressDomainDataMapper(){
-        return new AddressDomainDataMapper();
+    public AddressDomainToEntityDataMapper provideAddressDomainDataMapper(){
+        return new AddressDomainToEntityDataMapper();
     }
 
     @Provides
     @Singleton
-    public BalanceModelDataMapper provideBalanceModelDataMapper(){
-        return new BalanceModelDataMapper();
+    public BalanceModelToDomainDataMapper provideBalanceModelDataMapper(){
+        return new BalanceModelToDomainDataMapper();
+    }
+
+
+    @Provides
+    @Singleton
+    public FullBalanceModelToDomainDataMapper provideFullBalanceModelToDomainDataMapper(){
+        return new FullBalanceModelToDomainDataMapper();
     }
 
 }

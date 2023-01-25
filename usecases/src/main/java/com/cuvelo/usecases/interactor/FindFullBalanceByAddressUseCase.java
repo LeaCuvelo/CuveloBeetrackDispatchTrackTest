@@ -12,7 +12,6 @@ public class FindFullBalanceByAddressUseCase extends UseCase{
     private final BitcoinWalletRepository mBitcoinWalletRepository;
     private String btcWalletAddress;
 
-
     public FindFullBalanceByAddressUseCase(
             ThreadExecutor threadExecutor,
             PostExecutionThread postExecutionThread,
@@ -29,6 +28,5 @@ public class FindFullBalanceByAddressUseCase extends UseCase{
     protected Observable<FullBalanceDomain> buildUseCaseObservable() {
         return mBitcoinWalletRepository.getFullBalanceByAddressFromApi(btcWalletAddress);
     }
-
 
 }

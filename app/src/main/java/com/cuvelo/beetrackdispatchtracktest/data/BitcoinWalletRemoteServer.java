@@ -1,8 +1,8 @@
 package com.cuvelo.beetrackdispatchtracktest.data;
 
-import com.cuvelo.beetrackdispatchtracktest.data.mappers.BalanceModelDataMapper;
 import com.cuvelo.beetrackdispatchtracktest.data.model.AddressModel;
 import com.cuvelo.beetrackdispatchtracktest.data.model.BalanceModel;
+import com.cuvelo.beetrackdispatchtracktest.data.model.FullBalanceModel;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -16,6 +16,9 @@ public interface BitcoinWalletRemoteServer {
 
     @GET("addrs/{address}/balance")
     Observable<BalanceModel> getBitcoinWalletBalance(@Path("address") String address);
+
+    @GET("addrs/{address}/full")
+    Observable<FullBalanceModel> getBitcoinWalletFullBalance(@Path("address") String address);
 
 }
 

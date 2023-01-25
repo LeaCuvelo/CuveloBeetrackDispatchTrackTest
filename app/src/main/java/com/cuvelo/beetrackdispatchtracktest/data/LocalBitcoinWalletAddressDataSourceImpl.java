@@ -1,8 +1,8 @@
 package com.cuvelo.beetrackdispatchtracktest.data;
 
 import com.cuvelo.beetrackdispatchtracktest.data.db.AddressDao;
-import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressDomainDataMapper;
-import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressEntityDataMapper;
+import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressDomainToEntityDataMapper;
+import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressEntityToDomainDataMapper;
 import com.cuvelo.data.datasources.LocalBitcoinWalletAddressDataSource;
 import com.cuvelo.domain.AddressDomain;
 
@@ -12,13 +12,13 @@ public class LocalBitcoinWalletAddressDataSourceImpl implements LocalBitcoinWall
 
     private String TAG = "LocalBitcoinWalletAddressDataSourceImpl";
     private final AddressDao addressDao;
-    private final AddressEntityDataMapper addressEntityDataMapper;
-    private final AddressDomainDataMapper addressDomainDataMapper;
+    private final AddressEntityToDomainDataMapper addressEntityDataMapper;
+    private final AddressDomainToEntityDataMapper addressDomainDataMapper;
 
 
     public LocalBitcoinWalletAddressDataSourceImpl(AddressDao addressDao,
-                                                   AddressEntityDataMapper addressEntityDataMapper,
-                                                   AddressDomainDataMapper addressDomainDataMapper) {
+                                                   AddressEntityToDomainDataMapper addressEntityDataMapper,
+                                                   AddressDomainToEntityDataMapper addressDomainDataMapper) {
         this.addressDao = addressDao;
         this.addressEntityDataMapper = addressEntityDataMapper;
         this.addressDomainDataMapper = addressDomainDataMapper;

@@ -5,7 +5,6 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.cuvelo.domain.AddressDomain;
 import com.cuvelo.domain.BalanceDomain;
 import com.cuvelo.usecases.interactor.DefaultSubscriber;
 import com.cuvelo.usecases.interactor.FindBalanceByAddressUseCase;
@@ -71,8 +70,6 @@ public class BalanceFragmentViewModel  extends ViewModel {
 
     //endregion Public Methods
 
-
-
     //region Subscriber classes
 
     static class FindBalanceByAddressUseCaseSubscriber extends DefaultSubscriber<BalanceDomain> {
@@ -106,8 +103,5 @@ public class BalanceFragmentViewModel  extends ViewModel {
     }
 
     //endregion Subscriber classes
-
-
-
 
 }
