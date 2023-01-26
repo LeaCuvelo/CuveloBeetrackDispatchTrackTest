@@ -7,12 +7,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class BalanceModel implements Parcelable {
 
-
     @SerializedName("address") public String address;
     @SerializedName("balance")  public int balance;
     @SerializedName("unconfirmed_balance") public int unconfirmedBalance;
     @SerializedName("final_balance") public int finalBalance;
-
 
     protected BalanceModel(Parcel parcel) {
         address = parcel.readString();
@@ -73,6 +71,4 @@ public class BalanceModel implements Parcelable {
         dest.writeInt(unconfirmedBalance);
         dest.writeInt(finalBalance);
     }
-
-
 }

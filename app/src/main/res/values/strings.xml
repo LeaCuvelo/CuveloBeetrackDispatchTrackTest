@@ -23,7 +23,6 @@
     <string name="balance_unconfirmed_balance_title">Unconfirmed Balance: </string>
     <string name="balance_total_balance_title">Total Balance: </string>
 
-
     <!-- Wallet History -->
     <string name="btc_wallet_history_title">BTC Wallet Transaction History</string>
     <string name="btc_wallet_history_message">Unconfirmed transaction will be displayed without datetime</string>
@@ -31,7 +30,5 @@
     <string name="btc_wallet_history_item_transaction_not_confirmed">Transaction not confirmed yet</string>
     <string name="btc_wallet_history_error_message">An error occur trying to get Wallet History \n Check your connection and try again later</string>
     <string name="btc_wallet_history_empty_message">You don\'t have any wallet transaction</string>
-
-
 
 </resources>

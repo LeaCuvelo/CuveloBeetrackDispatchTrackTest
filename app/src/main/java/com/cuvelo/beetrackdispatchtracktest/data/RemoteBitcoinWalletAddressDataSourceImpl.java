@@ -8,10 +8,8 @@ import io.reactivex.Observable;
 
 public class RemoteBitcoinWalletAddressDataSourceImpl implements RemoteBitcoinWalletAddressDataSource {
 
-    private String TAG = "RemoteBitcoinWalletAddressDataSourceImpl";
     private final BitcoinWalletRemoteServer bitcoinWalletRemoteServer;
     private final AddressModelToDomainDataMapper addressModelDataMapper;
-
 
     public RemoteBitcoinWalletAddressDataSourceImpl(BitcoinWalletRemoteServer mBitcoinWalletRemoteServer,
                                                     AddressModelToDomainDataMapper mAddressModelDataMapper) {
@@ -23,6 +21,5 @@ public class RemoteBitcoinWalletAddressDataSourceImpl implements RemoteBitcoinWa
     public Observable<AddressDomain> generateBitcoinWalletAddress() {
         return bitcoinWalletRemoteServer.generateBitcoinAddress().map(addressModelDataMapper::transform);
     }
-
 
 }

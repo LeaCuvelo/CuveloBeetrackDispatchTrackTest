@@ -43,7 +43,7 @@ public class BitcoinTransactionDomainDiffCallback extends DiffUtil.Callback {
         BitcoinTransactionDomain newBitcoinTransactionDomain = newBitcoinTransactionDomainList.get(newItemPosition);
 
         return oldBitcoinTransactionDomain.getTimestampConfirmed().equals(newBitcoinTransactionDomain.getTimestampConfirmed())
-                && oldBitcoinTransactionDomain.getTotal()==newBitcoinTransactionDomain.getTotal();
+                && oldBitcoinTransactionDomain.getTotal().equals(newBitcoinTransactionDomain.getTotal());
     }
 
 }

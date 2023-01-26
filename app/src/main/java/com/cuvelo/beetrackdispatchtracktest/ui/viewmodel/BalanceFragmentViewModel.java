@@ -67,7 +67,6 @@ public class BalanceFragmentViewModel  extends ViewModel {
         addressMutableLiveData.setValue(address);
     }
 
-
     //endregion Public Methods
 
     //region Subscriber classes

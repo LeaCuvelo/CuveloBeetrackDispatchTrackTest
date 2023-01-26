@@ -27,7 +27,6 @@ public class HistoryFragmentViewModel extends ViewModel {
     public MutableLiveData<Boolean> errorStateVisibility = new MutableLiveData<>(false);
     public MutableLiveData<Boolean> emptyStateVisibility = new MutableLiveData<>(false);
 
-
     @Inject
     FindFullBalanceByAddressUseCase findFullBalanceByAddressUseCase;
 

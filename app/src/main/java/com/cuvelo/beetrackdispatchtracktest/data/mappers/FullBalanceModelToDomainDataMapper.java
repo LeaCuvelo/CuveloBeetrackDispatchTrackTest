@@ -29,7 +29,7 @@ public class FullBalanceModelToDomainDataMapper implements Transformer<FullBalan
         List<BitcoinTransactionDomain> bitcoinTransactionDomain = new ArrayList<>();
         for(BitcoinTransactionModel bitcoinTransaction : fullBalanceModel.transactions) {
             BitcoinTransactionDomain transaction = new BitcoinTransactionDomain();
-            String timestamp = "";
+            String timestamp;
             transaction.setTotal(decimalFormat.format((double) bitcoinTransaction.total / SATOSHIS_FACTOR_CONVERTION));
             timestamp = formatTimeStamp(bitcoinTransaction.timeStampConfirmed);
             transaction.setUnconfirmed(timestamp.isEmpty());

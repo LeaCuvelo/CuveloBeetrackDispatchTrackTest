@@ -13,5 +13,4 @@ public class AddressEntityToDomainDataMapper implements  Transformer<AddressDoma
         addressDomain.publicKeyPair = entity.publicKeyPair;
         return addressDomain;
     }
-
 }

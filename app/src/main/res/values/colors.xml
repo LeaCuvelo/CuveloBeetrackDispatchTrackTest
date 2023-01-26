@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="accent_blue">#2d3c8b</color>
     <color name="main_gold">#f79d22</color>
     <color name="variant_accent">#b5b6c5</color>
@@ -11,9 +12,5 @@
     <color name="btc_custom_green">#13CD9B</color>
     <color name="not_confirmed_orange">#FF5722</color>
     <color name="warning_grey">#5C5C5C</color>
-
-
-
-
 
 </resources>

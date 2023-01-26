@@ -76,7 +76,6 @@ dependencies {
     implementation "com.google.code.gson:gson:$gson_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_adapter_version"
 
-
     //Lifecycle Viewmodel
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycleviewmodel_version"
 
@@ -101,7 +100,6 @@ dependencies {
 
     //Swipe Refresh Layout
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_refresh_layout_version"
-
 
     //Test
     testImplementation 'junit:junit:4.13.2'

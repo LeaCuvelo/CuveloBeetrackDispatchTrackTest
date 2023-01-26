@@ -10,8 +10,6 @@ import io.reactivex.Observable;
 
 public class RemoteBitcoinWalletBalanceDataSourceImpl implements RemoteBitcoinWalletBalanceDataSource {
 
-    private String TAG = "RemoteBitcoinWalletBalanceDataSourceImpl";
-
     private final BitcoinWalletRemoteServer bitcoinWalletRemoteServer;
     private final BalanceModelToDomainDataMapper balanceModelDataMapper;
     private final FullBalanceModelToDomainDataMapper fullBalanceModelToDomainDataMapper;

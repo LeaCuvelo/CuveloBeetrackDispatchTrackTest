@@ -18,7 +18,6 @@ import com.google.zxing.BarcodeFormat;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 import dagger.hilt.android.AndroidEntryPoint;
 
-
 @AndroidEntryPoint
 public class GenerateBitcoinAddressActivity extends AppCompatActivity {
 

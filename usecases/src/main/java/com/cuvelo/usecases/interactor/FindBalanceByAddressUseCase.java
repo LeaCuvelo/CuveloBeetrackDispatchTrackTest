@@ -29,5 +29,4 @@ public class FindBalanceByAddressUseCase extends UseCase{
         return mBitcoinWalletRepository.getBalanceByAddressFromApi(btcWalletAddress);
     }
 
-
 }

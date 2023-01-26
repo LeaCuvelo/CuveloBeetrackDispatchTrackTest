@@ -10,7 +10,6 @@ import com.cuvelo.domain.FullBalanceDomain;
 
 import io.reactivex.Observable;
 
-
 public class BitcoinWalletRepository {
 
     private final LocalBitcoinWalletAddressDataSource mLocalBitcoinWalletAddressDataSource;

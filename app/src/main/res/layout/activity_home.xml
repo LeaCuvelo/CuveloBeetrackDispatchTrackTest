@@ -6,10 +6,6 @@
 
     <data>
         <import type="android.view.View"/>
-        <variable
-            name="viewModel"
-            type="com.cuvelo.beetrackdispatchtracktest.ui.viewmodel.HomeActivityViewModel"/>
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,7 +27,6 @@
             app:tabTextAppearance="?attr/textAppearanceSubtitle1"
             app:tabTextColor="#ffffff" />
 
-
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_main"
             android:layout_width="match_parent"
@@ -39,9 +34,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tl_main" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
 </layout>
-

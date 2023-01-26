@@ -29,6 +29,5 @@ public abstract class CompletableUseCase extends BaseUseCase {
                 .observeOn(postExecutionThread.getScheduler())
                 .subscribeWith(useCaseSubscriber);
 
-
     }
 }

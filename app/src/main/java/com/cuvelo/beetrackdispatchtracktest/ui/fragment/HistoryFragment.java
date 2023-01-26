@@ -8,8 +8,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +26,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class HistoryFragment extends Fragment {
-
-    private static final String TAG = "HistoryFragment";
 
     private FragmentHistoryBinding binding;
     private HistoryFragmentViewModel historyFragmentViewModel;

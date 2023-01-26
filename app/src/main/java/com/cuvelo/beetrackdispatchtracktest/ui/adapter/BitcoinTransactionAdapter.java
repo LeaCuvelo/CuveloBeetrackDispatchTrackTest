@@ -53,7 +53,7 @@ public class BitcoinTransactionAdapter extends RecyclerView.Adapter<BitcoinTrans
 
     //region ViewHolder
 
-    public class TransactionViewHolder extends RecyclerView.ViewHolder{
+    public static class TransactionViewHolder extends RecyclerView.ViewHolder{
 
         private final ItemBitcoinTransactionBinding binding;
 
