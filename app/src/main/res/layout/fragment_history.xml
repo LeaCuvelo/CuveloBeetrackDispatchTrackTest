@@ -63,10 +63,75 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_history_transactions"
+                android:visibility="@{historyViewModel.errorStateVisibility ? View.GONE : View.VISIBLE}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <!-- Error message -->
+        <LinearLayout
+            android:visibility="@{historyViewModel.errorStateVisibility ? View.VISIBLE : View.GONE}"
+            android:id="@+id/ll_error_state"
+            tools:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_btc_balance_error_icon"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/btc_error_icon_alt_text" />
+
+            <TextView
+                android:id="@+id/tv_btc_balance_error_message"
+                android:text="@string/btc_wallet_history_error_message"
+                android:gravity="center"
+                android:textColor="@color/red_alert"
+                android:textSize="@dimen/error_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <!-- Empty State -->
+        <LinearLayout
+            android:visibility="@{historyViewModel.emptyStateVisibility ? View.VISIBLE : View.GONE}"
+            android:id="@+id/ll_empty_state"
+            tools:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_btc_balance_empty_icon"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_warning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/btc_error_icon_alt_text" />
+
+            <TextView
+                android:id="@+id/tv_btc_balance_empty_message"
+                android:text="@string/btc_wallet_history_empty_message"
+                android:gravity="center"
+                android:textColor="@color/warning_grey"
+                android:textSize="@dimen/error_text_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
 
         <ProgressBar
             android:id="@+id/pb_loading"

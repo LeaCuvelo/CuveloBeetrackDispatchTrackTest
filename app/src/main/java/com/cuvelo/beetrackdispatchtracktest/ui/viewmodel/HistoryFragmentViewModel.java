@@ -49,11 +49,27 @@ public class HistoryFragmentViewModel extends ViewModel {
     //region Private Methods
 
     private void showErrorState(){
+        progressBarVisibility.setValue(false);
+        errorStateVisibility.setValue(true);
+    }
 
+    private void showEmptyState(){
+        emptyStateVisibility.setValue(true);
+    }
+
+    private void hideEmptyState(){
+        emptyStateVisibility.setValue(false);
     }
 
     private void processFullBalance(List<BitcoinTransactionDomain> transactions){
         progressBarVisibility.setValue(false);
+        errorStateVisibility.setValue(false);
+        if(transactions.isEmpty()){
+            showEmptyState();
+        }
+        else {
+            hideEmptyState();
+        }
         bitcoinTransactions.setValue(transactions);
     }
 
