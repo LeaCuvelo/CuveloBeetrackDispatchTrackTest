@@ -6,8 +6,10 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.cuvelo.domain.BalanceDomain;
+import com.cuvelo.usecases.interactor.DefaultCompletableSubscriber;
 import com.cuvelo.usecases.interactor.DefaultSubscriber;
 import com.cuvelo.usecases.interactor.FindBalanceByAddressUseCase;
+import com.cuvelo.usecases.interactor.SaveBalanceUseCase;
 
 import java.lang.ref.WeakReference;
 
@@ -27,6 +29,9 @@ public class BalanceFragmentViewModel  extends ViewModel {
 
     @Inject
     public FindBalanceByAddressUseCase findBalanceByAddressUseCase;
+
+    @Inject
+    public SaveBalanceUseCase saveBalanceUseCase;
 
     @Inject
     public BalanceFragmentViewModel(){
@@ -57,17 +62,35 @@ public class BalanceFragmentViewModel  extends ViewModel {
         errorStateVisibility.setValue(true);
     }
 
-    public void processBalance(BalanceDomain balanceDomain){
+    //endregion Public Methods
+
+    //region Private Methods
+
+    private void processBalance(BalanceDomain balanceDomain){
         btcBalanceMutableLiveData.setValue(balanceDomain);
         progressBarVisibility.setValue(false);
         errorStateVisibility.setValue(false);
+        saveBalanceInDb(balanceDomain);
     }
 
     private void showBtcAddressTextAndQR(String address){
         addressMutableLiveData.setValue(address);
     }
 
-    //endregion Public Methods
+    private void saveBalanceInDb(BalanceDomain balanceDomain){
+        saveBalanceUseCase.setBalanceDomain(balanceDomain);
+        saveBalanceUseCase.execute(new BalanceFragmentViewModel.SaveBalanceByAddressUseCaseSubscriber(this));
+    }
+
+    private void errorSavingDb(){
+        Log.d(TAG, "ERROR SAVING DB");
+    }
+
+    private void balanceStoredInDb(){
+        Log.d(TAG, "SUCCESS SAVING DB");
+    }
+
+    //endregion Private Methods
 
     //region Subscriber classes
 
@@ -97,6 +120,30 @@ public class BalanceFragmentViewModel  extends ViewModel {
             super.onNext(balance);
             final BalanceFragmentViewModel viewModel = viewModelWeakReference.get();
             viewModel.processBalance(balance);
+        }
+    }
+
+    static class SaveBalanceByAddressUseCaseSubscriber extends DefaultCompletableSubscriber {
+
+        final WeakReference<BalanceFragmentViewModel> viewModelWeakReference;
+
+        public SaveBalanceByAddressUseCaseSubscriber(BalanceFragmentViewModel viewModelWeakReference) {
+            this.viewModelWeakReference = new WeakReference<>(viewModelWeakReference);
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            super.onError(e);
+            Log.e(TAG, e.getClass().getSimpleName() + ": " + e.getMessage());
+            final BalanceFragmentViewModel viewModel = viewModelWeakReference.get();
+            viewModel.errorSavingDb();
+        }
+
+        @Override
+        protected void onCompleted() {
+            super.onCompleted();
+            final BalanceFragmentViewModel viewModel = viewModelWeakReference.get();
+            viewModel.balanceStoredInDb();
         }
 
     }

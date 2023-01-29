@@ -6,6 +6,8 @@ import com.cuvelo.usecases.executor.ThreadExecutor;
 import com.cuvelo.usecases.interactor.FindBalanceByAddressUseCase;
 import com.cuvelo.usecases.interactor.FindFullBalanceByAddressUseCase;
 import com.cuvelo.usecases.interactor.GenerateAddressUseCase;
+import com.cuvelo.usecases.interactor.SaveBalanceUseCase;
+
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
@@ -34,6 +36,13 @@ public class ViewModelModule {
                                                                               PostExecutionThread postExecutionThread,
                                                                               BitcoinWalletRepository bitcoinWalletRepository){
         return new FindFullBalanceByAddressUseCase(threadExecutor, postExecutionThread, bitcoinWalletRepository);
+    }
+
+    @Provides
+    public SaveBalanceUseCase provideSaveBalanceUseCase(ThreadExecutor threadExecutor,
+                                                                     PostExecutionThread postExecutionThread,
+                                                                     BitcoinWalletRepository bitcoinWalletRepository){
+        return new SaveBalanceUseCase(threadExecutor, postExecutionThread, bitcoinWalletRepository);
     }
 
 }

@@ -26,7 +26,7 @@ public class FindBalanceByAddressUseCase extends UseCase{
 
     @Override
     protected Observable<BalanceDomain> buildUseCaseObservable() {
-        return mBitcoinWalletRepository.getBalanceByAddressFromApi(btcWalletAddress);
+        return mBitcoinWalletRepository.getBalance(btcWalletAddress);
     }
 
 }

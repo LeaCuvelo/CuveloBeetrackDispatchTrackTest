@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
 
+//TODO delete this entity and related files! we are using shared preff
 @Entity
 public class AddressEntity {
 

@@ -10,6 +10,8 @@ import com.cuvelo.domain.FullBalanceDomain;
 
 import io.reactivex.Observable;
 
+
+//TODO refactor this class, and delete unused methods
 public class BitcoinWalletRepository {
 
     private final LocalBitcoinWalletAddressDataSource mLocalBitcoinWalletAddressDataSource;
@@ -28,19 +30,13 @@ public class BitcoinWalletRepository {
         this.mRemoteBitcoinWalletBalanceDataSource = remoteBitcoinWalletBalanceDataSource;
     }
 
-    public Observable findBalanceByAddressFromApi(String address){
-        return mRemoteBitcoinWalletBalanceDataSource.getBalance(address);
-    }
 
-    public Observable findFullBalanceByAddressFromApi(String address){
-        return mRemoteBitcoinWalletBalanceDataSource.getFullBalance(address);
-    }
 
-    public Observable findBalanceByAddressFromDataBase(String address){
+    public Observable<BalanceDomain> findBalanceByAddressFromDataBase(String address){
         return mLocalBitcoinWalletBalanceDataSource.getBalance(address);
     }
 
-    public Observable findFullBalanceByAddressFromDataBase(String address){
+    public Observable<FullBalanceDomain> findFullBalanceByAddressFromDataBase(String address){
         return mLocalBitcoinWalletBalanceDataSource.getFullBalance(address);
     }
 
@@ -55,6 +51,30 @@ public class BitcoinWalletRepository {
     //TODO return values to success or error
     public void saveBitcoinWalletAddress(AddressDomain addressDomain){
         mLocalBitcoinWalletAddressDataSource.saveBitcoinWalletAddress(addressDomain);
+    }
+
+    public void saveBalance(BalanceDomain balanceDomain){
+        mLocalBitcoinWalletBalanceDataSource.saveBalance(balanceDomain);
+    }
+
+
+
+    public Observable<BalanceDomain>  getBalance(String address){
+        //TODO intercept the values from API and check if is empty
+        //TODO retrieve data from Database check if is ok
+
+       /* Observable<BalanceDomain> balanceFromApi = getBalanceByAddressFromApi(address);
+
+        if(balanceFromApi ){ //TODO check if data is empty
+
+            return  findBalanceByAddressFromDataBase(address);
+        }else{
+            return balanceFromApi;
+        }*/
+
+        //TODO right now only return from API
+        return getBalanceByAddressFromApi(address);
+
     }
 
     public Observable<BalanceDomain> getBalanceByAddressFromApi(String address){

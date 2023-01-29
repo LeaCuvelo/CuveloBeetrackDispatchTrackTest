@@ -12,9 +12,6 @@ public class GenerateAddressUseCase extends UseCase {
 
     private final BitcoinWalletRepository mBitcoinWalletRepository;
 
-    //TODO emit first value
-    //TODO replace with flow
-
     public GenerateAddressUseCase(
             ThreadExecutor threadExecutor,
             PostExecutionThread postExecutionThread,

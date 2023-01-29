@@ -1,7 +1,7 @@
 package com.cuvelo.usecases.interactor;
 
 import com.cuvelo.data.repositories.BitcoinWalletRepository;
-import com.cuvelo.domain.AddressDomain;
+import com.cuvelo.domain.BalanceDomain;
 import com.cuvelo.usecases.executor.PostExecutionThread;
 import com.cuvelo.usecases.executor.ThreadExecutor;
 
@@ -9,13 +9,12 @@ import java.util.concurrent.Callable;
 
 import io.reactivex.Completable;
 
-//TODO delete this class
-public class SaveAddressUseCase  extends CompletableUseCase {
+public class SaveBalanceUseCase extends CompletableUseCase{
 
     private final BitcoinWalletRepository mBitcoinWalletRepository;
-    private AddressDomain addressDomain;
+    private BalanceDomain balanceDomain;
 
-    public SaveAddressUseCase(
+    public SaveBalanceUseCase(
             ThreadExecutor threadExecutor,
             PostExecutionThread postExecutionThread,
             BitcoinWalletRepository bitcoinWalletRepository) {
@@ -23,8 +22,8 @@ public class SaveAddressUseCase  extends CompletableUseCase {
         this.mBitcoinWalletRepository = bitcoinWalletRepository;
     }
 
-    public void setAddressDomain(AddressDomain addressDomain) {
-        this.addressDomain = addressDomain;
+    public void setBalanceDomain(BalanceDomain balanceDomain) {
+        this.balanceDomain = balanceDomain;
     }
 
     //TODO return values to success or error
@@ -35,7 +34,7 @@ public class SaveAddressUseCase  extends CompletableUseCase {
         return Completable.fromCallable(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                mBitcoinWalletRepository.saveBitcoinWalletAddress(addressDomain);
+                mBitcoinWalletRepository.saveBalance(balanceDomain);
                 return this;
             }
         });

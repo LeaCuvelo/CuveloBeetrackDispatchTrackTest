@@ -7,9 +7,13 @@ import androidx.room.Room;
 import com.cuvelo.beetrackdispatchtracktest.data.LocalBitcoinWalletAddressDataSourceImpl;
 import com.cuvelo.beetrackdispatchtracktest.data.LocalBitcoinWalletBalanceDataSourceImpl;
 import com.cuvelo.beetrackdispatchtracktest.data.db.AddressDao;
+import com.cuvelo.beetrackdispatchtracktest.data.db.BalanceDao;
 import com.cuvelo.beetrackdispatchtracktest.data.db.BeetrackDispatchtrackDatabase;
+import com.cuvelo.beetrackdispatchtracktest.data.db.FullBalanceDao;
 import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressDomainToEntityDataMapper;
 import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressEntityToDomainDataMapper;
+import com.cuvelo.beetrackdispatchtracktest.data.mappers.BalanceDomainToEntityDataMapper;
+import com.cuvelo.beetrackdispatchtracktest.data.mappers.BalanceEntityToDomainDataMapper;
 import com.cuvelo.data.datasources.LocalBitcoinWalletAddressDataSource;
 import com.cuvelo.data.datasources.LocalBitcoinWalletBalanceDataSource;
 
@@ -49,8 +53,23 @@ public class RoomModule {
 
     @Provides
     @Singleton
-    public LocalBitcoinWalletBalanceDataSource provideLocalBitcoinWalletBalanceDataSource(){
-        return new LocalBitcoinWalletBalanceDataSourceImpl();
+    public BalanceDao provideBalanceDao(BeetrackDispatchtrackDatabase db){
+        return db.balanceDao();
+    }
+
+    @Provides
+    @Singleton
+    public FullBalanceDao provideFullBalanceDao(BeetrackDispatchtrackDatabase db){
+        return db.fullBalanceDao();
+    }
+
+    @Provides
+    @Singleton
+    public LocalBitcoinWalletBalanceDataSource provideLocalBitcoinWalletBalanceDataSource(BalanceDao balanceDao,
+                                                                                          FullBalanceDao fullBalanceDao,
+                                                                                          BalanceDomainToEntityDataMapper balanceDomainToEntityDataMapper,
+                                                                                          BalanceEntityToDomainDataMapper balanceEntityToDomainDataMapper){
+        return new LocalBitcoinWalletBalanceDataSourceImpl(balanceDao, fullBalanceDao, balanceDomainToEntityDataMapper, balanceEntityToDomainDataMapper);
     }
 
 }
