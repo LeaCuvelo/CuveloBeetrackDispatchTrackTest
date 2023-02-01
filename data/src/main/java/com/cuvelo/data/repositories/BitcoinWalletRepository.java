@@ -32,7 +32,7 @@ public class BitcoinWalletRepository {
 
 
 
-    public Observable<BalanceDomain> findBalanceByAddressFromDataBase(String address){
+    public Observable<BalanceDomain> getBalanceByAddressFromDataBase(String address){
         return mLocalBitcoinWalletBalanceDataSource.getBalance(address);
     }
 
@@ -56,25 +56,9 @@ public class BitcoinWalletRepository {
     public void saveBalance(BalanceDomain balanceDomain){
         mLocalBitcoinWalletBalanceDataSource.saveBalance(balanceDomain);
     }
-
-
-
+    
     public Observable<BalanceDomain>  getBalance(String address){
-        //TODO intercept the values from API and check if is empty
-        //TODO retrieve data from Database check if is ok
-
-       /* Observable<BalanceDomain> balanceFromApi = getBalanceByAddressFromApi(address);
-
-        if(balanceFromApi ){ //TODO check if data is empty
-
-            return  findBalanceByAddressFromDataBase(address);
-        }else{
-            return balanceFromApi;
-        }*/
-
-        //TODO right now only return from API
-        return getBalanceByAddressFromApi(address);
-
+        return getBalanceByAddressFromDataBase(address).switchIfEmpty(getBalanceByAddressFromApi(address));
     }
 
     public Observable<BalanceDomain> getBalanceByAddressFromApi(String address){

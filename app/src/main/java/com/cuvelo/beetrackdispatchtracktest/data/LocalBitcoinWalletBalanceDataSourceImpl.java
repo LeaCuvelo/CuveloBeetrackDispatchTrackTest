@@ -8,6 +8,8 @@ import com.cuvelo.data.datasources.LocalBitcoinWalletBalanceDataSource;
 import com.cuvelo.domain.BalanceDomain;
 import com.cuvelo.domain.FullBalanceDomain;
 
+import java.util.concurrent.Callable;
+
 import io.reactivex.Observable;
 
 public class LocalBitcoinWalletBalanceDataSourceImpl implements LocalBitcoinWalletBalanceDataSource {
@@ -31,7 +33,7 @@ public class LocalBitcoinWalletBalanceDataSourceImpl implements LocalBitcoinWall
 
     @Override
     public Observable getBalance(String address) {
-        return Observable.just(balanceEntityToDomainDataMapper.transform(balanceDao.getBalance()));
+        return Observable.fromCallable((Callable<Object>) () -> balanceEntityToDomainDataMapper.transform(balanceDao.getBalance()));
     }
 
     @Override
