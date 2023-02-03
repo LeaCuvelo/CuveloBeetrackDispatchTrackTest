@@ -4,17 +4,12 @@ import android.content.Context;
 
 import androidx.room.Room;
 
-import com.cuvelo.beetrackdispatchtracktest.data.LocalBitcoinWalletAddressDataSourceImpl;
 import com.cuvelo.beetrackdispatchtracktest.data.LocalBitcoinWalletBalanceDataSourceImpl;
-import com.cuvelo.beetrackdispatchtracktest.data.db.AddressDao;
 import com.cuvelo.beetrackdispatchtracktest.data.db.BalanceDao;
 import com.cuvelo.beetrackdispatchtracktest.data.db.BeetrackDispatchtrackDatabase;
 import com.cuvelo.beetrackdispatchtracktest.data.db.FullBalanceDao;
-import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressDomainToEntityDataMapper;
-import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressEntityToDomainDataMapper;
 import com.cuvelo.beetrackdispatchtracktest.data.mappers.BalanceDomainToEntityDataMapper;
 import com.cuvelo.beetrackdispatchtracktest.data.mappers.BalanceEntityToDomainDataMapper;
-import com.cuvelo.data.datasources.LocalBitcoinWalletAddressDataSource;
 import com.cuvelo.data.datasources.LocalBitcoinWalletBalanceDataSource;
 
 import javax.inject.Singleton;
@@ -37,19 +32,6 @@ public class RoomModule {
         return Room.databaseBuilder(context, BeetrackDispatchtrackDatabase.class, BEETRACK_DISPATCHTRACK_DATABASE_NAME).build();
     }
 
-    @Singleton
-    @Provides
-    public AddressDao provideAddressDao(BeetrackDispatchtrackDatabase db){
-        return db.addressDao();
-    }
-
-    @Provides
-    @Singleton
-    public LocalBitcoinWalletAddressDataSource provideLocalBitcoinWalletAddressDataSource(AddressDao addressDao,
-                                                                                          AddressEntityToDomainDataMapper addressEntityDataMapper,
-                                                                                          AddressDomainToEntityDataMapper addressDomainDataMapper){
-        return new LocalBitcoinWalletAddressDataSourceImpl(addressDao, addressEntityDataMapper, addressDomainDataMapper);
-    }
 
     @Provides
     @Singleton

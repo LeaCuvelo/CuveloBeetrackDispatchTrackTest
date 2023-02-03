@@ -1,7 +1,5 @@
 package com.cuvelo.beetrackdispatchtracktest.di;
 
-import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressDomainToEntityDataMapper;
-import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressEntityToDomainDataMapper;
 import com.cuvelo.beetrackdispatchtracktest.data.mappers.AddressModelToDomainDataMapper;
 import com.cuvelo.beetrackdispatchtracktest.data.mappers.BalanceDomainToEntityDataMapper;
 import com.cuvelo.beetrackdispatchtracktest.data.mappers.BalanceEntityToDomainDataMapper;
@@ -25,17 +23,6 @@ public class TransformerModule {
         return new AddressModelToDomainDataMapper();
     }
 
-    @Provides
-    @Singleton
-    public AddressEntityToDomainDataMapper provideAddressEntityDataMapper(){
-        return new AddressEntityToDomainDataMapper();
-    }
-
-    @Provides
-    @Singleton
-    public AddressDomainToEntityDataMapper provideAddressDomainDataMapper(){
-        return new AddressDomainToEntityDataMapper();
-    }
 
     @Provides
     @Singleton

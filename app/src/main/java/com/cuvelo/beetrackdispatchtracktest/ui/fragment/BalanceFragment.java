@@ -17,10 +17,13 @@ import android.view.ViewGroup;
 import com.cuvelo.beetrackdispatchtracktest.R;
 import com.cuvelo.beetrackdispatchtracktest.databinding.FragmentBalanceBinding;
 import com.cuvelo.beetrackdispatchtracktest.ui.viewmodel.BalanceFragmentViewModel;
+import com.cuvelo.beetrackdispatchtracktest.ui.viewmodel.HomeActivityViewModel;
 import com.google.zxing.BarcodeFormat;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -31,11 +34,12 @@ public class BalanceFragment extends Fragment {
 
     private FragmentBalanceBinding binding;
     private BalanceFragmentViewModel balanceFragmentViewModel;
-    private final String btcAddress;
+    private HomeActivityViewModel homeActivityViewModel;
 
-    public BalanceFragment(String btcAddress) {
-        this.btcAddress = btcAddress;
+
+    public BalanceFragment() {
     }
+
 
     //region Lifecycle Methods
 
@@ -63,15 +67,18 @@ public class BalanceFragment extends Fragment {
     public void onViewCreated(@NonNull @NotNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         balanceFragmentViewModel = new ViewModelProvider(this).get(BalanceFragmentViewModel.class);
+        homeActivityViewModel = new ViewModelProvider(getActivity()).get(HomeActivityViewModel.class);
 
         binding.setBalanceViewModel(balanceFragmentViewModel);
+        binding.setHomeViewModel(homeActivityViewModel);
         setupObservers();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        balanceFragmentViewModel.getBitcoinWalletBalance(btcAddress);
+        if(homeActivityViewModel.addressMutableLiveData.getValue() != null && !homeActivityViewModel.addressMutableLiveData.getValue().isEmpty())
+            balanceFragmentViewModel.getBitcoinWalletBalance(homeActivityViewModel.addressMutableLiveData.getValue());
     }
 
     //endregion Lifecycle Methods
@@ -79,7 +86,7 @@ public class BalanceFragment extends Fragment {
     //region Private Methods
 
     private void setupObservers() {
-        balanceFragmentViewModel.addressMutableLiveData.observe(getViewLifecycleOwner(),this::generateQRBtcAddress);
+        homeActivityViewModel.addressMutableLiveData.observe(getViewLifecycleOwner(),this::generateQRBtcAddress);
     }
 
     private void generateQRBtcAddress(String address){
@@ -90,6 +97,11 @@ public class BalanceFragment extends Fragment {
         } catch(Exception e) {
             Log.e(TAG, e.getClass().getSimpleName() + ": " + e.getMessage());
         }
+        getBalance(address);
+    }
+
+    private void getBalance(String address){
+        balanceFragmentViewModel.getBitcoinWalletBalance(address);
     }
 
     //endregion Private Methods

@@ -30,6 +30,7 @@ public class HistoryFragmentViewModel extends ViewModel {
     @Inject
     FindFullBalanceByAddressUseCase findFullBalanceByAddressUseCase;
 
+
     @Inject
     public HistoryFragmentViewModel() {
 
@@ -48,6 +49,7 @@ public class HistoryFragmentViewModel extends ViewModel {
     //region Private Methods
 
     private void showErrorState(){
+        hideEmptyState();
         progressBarVisibility.setValue(false);
         errorStateVisibility.setValue(true);
     }

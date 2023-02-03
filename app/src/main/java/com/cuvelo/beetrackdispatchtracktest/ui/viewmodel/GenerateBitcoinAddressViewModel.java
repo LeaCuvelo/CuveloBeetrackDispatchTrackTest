@@ -62,7 +62,7 @@ public class GenerateBitcoinAddressViewModel extends ViewModel {
         saveAlertDialogVisibility.setValue(true);
     }
 
-    public void storeCurrentBtcAddressInDB(){
+    public void storeCurrentBtcAddressInSP(){
         storeBtcAddressInSharedPreferences();
     }
 

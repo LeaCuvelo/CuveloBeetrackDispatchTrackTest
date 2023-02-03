@@ -22,10 +22,10 @@ public class BalanceFragmentViewModel  extends ViewModel {
 
     private static final String TAG = "BalanceFragmentVM";
 
-    public MutableLiveData<String> addressMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<BalanceDomain> btcBalanceMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<Boolean> progressBarVisibility = new MutableLiveData<>(false);
     public MutableLiveData<Boolean> errorStateVisibility = new MutableLiveData<>(false);
+
 
     @Inject
     public FindBalanceByAddressUseCase findBalanceByAddressUseCase;
@@ -51,7 +51,6 @@ public class BalanceFragmentViewModel  extends ViewModel {
     //region Public Methods
 
     public void getBitcoinWalletBalance(String address){
-        showBtcAddressTextAndQR(address);
         progressBarVisibility.setValue(true);
         findBalanceByAddressUseCase.setBtcWalletAddress(address);
         findBalanceByAddressUseCase.execute(new BalanceFragmentViewModel.FindBalanceByAddressUseCaseSubscriber(this));
@@ -73,9 +72,7 @@ public class BalanceFragmentViewModel  extends ViewModel {
         saveBalanceInDb(balanceDomain);
     }
 
-    private void showBtcAddressTextAndQR(String address){
-        addressMutableLiveData.setValue(address);
-    }
+
 
     private void saveBalanceInDb(BalanceDomain balanceDomain){
         saveBalanceUseCase.setBalanceDomain(balanceDomain);

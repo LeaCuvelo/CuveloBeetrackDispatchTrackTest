@@ -1,6 +1,5 @@
 package com.cuvelo.beetrackdispatchtracktest.di;
 
-import com.cuvelo.data.datasources.LocalBitcoinWalletAddressDataSource;
 import com.cuvelo.data.datasources.LocalBitcoinWalletBalanceDataSource;
 import com.cuvelo.data.datasources.RemoteBitcoinWalletAddressDataSource;
 import com.cuvelo.data.datasources.RemoteBitcoinWalletBalanceDataSource;
@@ -17,12 +16,10 @@ public class DataModule {
 
     @Provides
     public BitcoinWalletRepository provideBitcoinWalletRepository(
-            LocalBitcoinWalletAddressDataSource localBitcoinWalletAddressDataSource,
             RemoteBitcoinWalletAddressDataSource remoteBitcoinWalletAddressDataSource,
             LocalBitcoinWalletBalanceDataSource localBitcoinWalletBalanceDataSource,
             RemoteBitcoinWalletBalanceDataSource remoteBitcoinWalletBalanceDataSource){
         return new BitcoinWalletRepository(
-                localBitcoinWalletAddressDataSource,
                 remoteBitcoinWalletAddressDataSource,
                 localBitcoinWalletBalanceDataSource,
                 remoteBitcoinWalletBalanceDataSource);

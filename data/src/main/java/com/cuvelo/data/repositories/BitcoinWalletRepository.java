@@ -1,6 +1,5 @@
 package com.cuvelo.data.repositories;
 
-import com.cuvelo.data.datasources.LocalBitcoinWalletAddressDataSource;
 import com.cuvelo.data.datasources.LocalBitcoinWalletBalanceDataSource;
 import com.cuvelo.data.datasources.RemoteBitcoinWalletAddressDataSource;
 import com.cuvelo.data.datasources.RemoteBitcoinWalletBalanceDataSource;
@@ -11,25 +10,20 @@ import com.cuvelo.domain.FullBalanceDomain;
 import io.reactivex.Observable;
 
 
-//TODO refactor this class, and delete unused methods
 public class BitcoinWalletRepository {
 
-    private final LocalBitcoinWalletAddressDataSource mLocalBitcoinWalletAddressDataSource;
     private final RemoteBitcoinWalletAddressDataSource mRemoteBitcoinWalletAddressDataSource;
     private final LocalBitcoinWalletBalanceDataSource mLocalBitcoinWalletBalanceDataSource;
     private final RemoteBitcoinWalletBalanceDataSource mRemoteBitcoinWalletBalanceDataSource;
 
 
-    public BitcoinWalletRepository(LocalBitcoinWalletAddressDataSource localBitcoinWalletAddressDataSource,
-                                   RemoteBitcoinWalletAddressDataSource remoteBitcoinWalletAddressDataSource,
+    public BitcoinWalletRepository(RemoteBitcoinWalletAddressDataSource remoteBitcoinWalletAddressDataSource,
                                    LocalBitcoinWalletBalanceDataSource localBitcoinWalletBalanceDataSource,
                                    RemoteBitcoinWalletBalanceDataSource remoteBitcoinWalletBalanceDataSource){
-        this.mLocalBitcoinWalletAddressDataSource = localBitcoinWalletAddressDataSource;
         this.mRemoteBitcoinWalletAddressDataSource = remoteBitcoinWalletAddressDataSource;
         this.mLocalBitcoinWalletBalanceDataSource = localBitcoinWalletBalanceDataSource;
         this.mRemoteBitcoinWalletBalanceDataSource = remoteBitcoinWalletBalanceDataSource;
     }
-
 
 
     public Observable<BalanceDomain> getBalanceByAddressFromDataBase(String address){
@@ -44,21 +38,14 @@ public class BitcoinWalletRepository {
         return mRemoteBitcoinWalletAddressDataSource.generateBitcoinWalletAddress();
     }
 
-    public Observable<AddressDomain> getBitcoinWalletAddressFromDataBase(){
-        return mLocalBitcoinWalletAddressDataSource.getBitcoinWalletAddress();
-    }
-
-    //TODO return values to success or error
-    public void saveBitcoinWalletAddress(AddressDomain addressDomain){
-        mLocalBitcoinWalletAddressDataSource.saveBitcoinWalletAddress(addressDomain);
-    }
-
     public void saveBalance(BalanceDomain balanceDomain){
         mLocalBitcoinWalletBalanceDataSource.saveBalance(balanceDomain);
     }
     
-    public Observable<BalanceDomain>  getBalance(String address){
-        return getBalanceByAddressFromDataBase(address).switchIfEmpty(getBalanceByAddressFromApi(address));
+    public Observable<BalanceDomain> getBalance(String address){
+        return getBalanceByAddressFromApi(address);
+        //TODO offline mode, WIP on the following way of catch data from DB or API
+        // return getBalanceByAddressFromDataBase(address).switchIfEmpty(getBalanceByAddressFromApi(address));
     }
 
     public Observable<BalanceDomain> getBalanceByAddressFromApi(String address){
@@ -68,6 +55,5 @@ public class BitcoinWalletRepository {
     public Observable<FullBalanceDomain> getFullBalanceByAddressFromApi(String address){
         return mRemoteBitcoinWalletBalanceDataSource.getFullBalance(address);
     }
-
 
 }

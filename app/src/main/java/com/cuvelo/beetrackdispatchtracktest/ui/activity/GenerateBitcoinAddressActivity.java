@@ -22,7 +22,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class GenerateBitcoinAddressActivity extends AppCompatActivity {
 
     private static final String TAG = "GenerateBtcAddrssActvty";
-    public static final String BTC_ADDRESS_EXTRA = "BTC_ADDRESS_EXTRA";
 
     private ActivityGenerateBitcoinAddressBinding binding;
     private GenerateBitcoinAddressViewModel viewModel;
@@ -39,7 +38,7 @@ public class GenerateBitcoinAddressActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(GenerateBitcoinAddressViewModel.class);
         String btcAddress = viewModel.isBtcAddressStored();
         if(!btcAddress.isEmpty()){
-            navigateToHome(btcAddress);
+            navigateToHome();
         }
 
         binding = ActivityGenerateBitcoinAddressBinding.inflate(getLayoutInflater());
@@ -49,6 +48,12 @@ public class GenerateBitcoinAddressActivity extends AppCompatActivity {
         binding.setLifecycleOwner(this);
         binding.setViewModel(viewModel);
         setupObservers();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        viewModel.saveAlertDialogVisibility.setValue(false);
     }
 
     //endregion LifeCycle Methods
@@ -72,8 +77,8 @@ public class GenerateBitcoinAddressActivity extends AppCompatActivity {
                     .setMessage(getBaseContext().getString(R.string.btc_address_save_message, viewModel.addressMutableLiveData.getValue().address))
                     .setPositiveButton(R.string.btc_address_save_confirm, (dialog, which) -> {
                         dialog.cancel();
-                        viewModel.storeCurrentBtcAddressInDB();
-                        navigateToHome(viewModel.addressMutableLiveData.getValue().address);
+                        viewModel.storeCurrentBtcAddressInSP();
+                        navigateToHome();
                     })
                     .setNegativeButton(R.string.btc_address_save_cancel, (dialog, which) -> dialog.cancel());
 
@@ -88,9 +93,8 @@ public class GenerateBitcoinAddressActivity extends AppCompatActivity {
         viewModel.saveAlertDialogVisibility.observe(this,this::showSaveBtcAddressAlertDialog);
     }
 
-    private void navigateToHome(String btcAddress){
+    private void navigateToHome(){
         Intent navigateToHomeIntent = new Intent(GenerateBitcoinAddressActivity.this, HomeActivity.class);
-        navigateToHomeIntent.putExtra(BTC_ADDRESS_EXTRA, btcAddress);
         startActivity(navigateToHomeIntent);
         finish();
     }

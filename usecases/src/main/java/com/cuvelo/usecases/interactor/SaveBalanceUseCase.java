@@ -26,8 +26,6 @@ public class SaveBalanceUseCase extends CompletableUseCase{
         this.balanceDomain = balanceDomain;
     }
 
-    //TODO return values to success or error
-    //TODO implement handle excpeption
     @Override
     protected Completable buildUseCaseObservable() {
 

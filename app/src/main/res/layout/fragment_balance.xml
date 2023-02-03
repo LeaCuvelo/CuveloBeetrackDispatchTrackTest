@@ -11,6 +11,10 @@
             name="balanceViewModel"
             type="com.cuvelo.beetrackdispatchtracktest.ui.viewmodel.BalanceFragmentViewModel"/>
 
+        <variable
+            name="homeViewModel"
+            type="com.cuvelo.beetrackdispatchtracktest.ui.viewmodel.HomeActivityViewModel"/>
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,7 +43,7 @@
             android:textIsSelectable="true"
             app:layout_constraintTop_toBottomOf="@+id/tv_btc_address_text_tiitle"
             android:layout_marginTop="@dimen/address_text_margin_top"
-            android:text="@{balanceViewModel.addressMutableLiveData}"
+            android:text="@{homeViewModel.addressMutableLiveData}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

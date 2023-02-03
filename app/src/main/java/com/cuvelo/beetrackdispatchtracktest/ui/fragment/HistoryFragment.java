@@ -16,6 +16,7 @@ import com.cuvelo.beetrackdispatchtracktest.R;
 import com.cuvelo.beetrackdispatchtracktest.databinding.FragmentHistoryBinding;
 import com.cuvelo.beetrackdispatchtracktest.ui.adapter.BitcoinTransactionAdapter;
 import com.cuvelo.beetrackdispatchtracktest.ui.viewmodel.HistoryFragmentViewModel;
+import com.cuvelo.beetrackdispatchtracktest.ui.viewmodel.HomeActivityViewModel;
 import com.cuvelo.domain.BitcoinTransactionDomain;
 
 import org.jetbrains.annotations.NotNull;
@@ -29,11 +30,11 @@ public class HistoryFragment extends Fragment {
 
     private FragmentHistoryBinding binding;
     private HistoryFragmentViewModel historyFragmentViewModel;
-    private final String btcAddress;
+    private HomeActivityViewModel homeActivityViewModel;
     private BitcoinTransactionAdapter transactionAdapter;
 
-    public HistoryFragment(String btcAddress) {
-        this.btcAddress = btcAddress;
+    public HistoryFragment() {
+
     }
 
     //region Lifecycle Methods
@@ -63,6 +64,7 @@ public class HistoryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         historyFragmentViewModel = new ViewModelProvider(this).get(HistoryFragmentViewModel.class);
+        homeActivityViewModel = new ViewModelProvider(getActivity()).get(HomeActivityViewModel.class);
 
         binding.setHistoryViewModel(historyFragmentViewModel);
 
@@ -73,10 +75,15 @@ public class HistoryFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        historyFragmentViewModel.getBitcoinWalletFullBalance(btcAddress);
+        historyFragmentViewModel.getBitcoinWalletFullBalance(homeActivityViewModel.addressMutableLiveData.getValue());
     }
 
     //endregion Lifecycle Methods
+
+    //region Public Methods
+    
+
+    //endregion Public Methods
 
     //region Private Methods
 
@@ -89,7 +96,7 @@ public class HistoryFragment extends Fragment {
 
     private void setupSwipeRefreshLayout(){
         binding.srlBalanceListRefreshContainer.setOnRefreshListener(() -> {
-            historyFragmentViewModel.getBitcoinWalletFullBalance(btcAddress);
+            historyFragmentViewModel.getBitcoinWalletFullBalance(homeActivityViewModel.addressMutableLiveData.getValue());
         });
     }
 
