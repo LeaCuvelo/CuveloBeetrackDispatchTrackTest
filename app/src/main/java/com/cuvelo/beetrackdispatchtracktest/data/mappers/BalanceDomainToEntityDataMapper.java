@@ -8,10 +8,19 @@ public class BalanceDomainToEntityDataMapper implements  Transformer<BalanceEnti
     @Override
     public BalanceEntity transform(BalanceDomain domain) {
         BalanceEntity balanceEntity = new BalanceEntity();
-        balanceEntity.address = domain.address;
-        balanceEntity.balance = domain.balance;
-        balanceEntity.unconfirmedBalance = domain.unconfirmedBalance;
-        balanceEntity.finalBalance = domain.finalBalance;
+        if(domain != null){
+            balanceEntity.address = domain.address;
+            balanceEntity.balance = domain.balance;
+            balanceEntity.unconfirmedBalance = domain.unconfirmedBalance;
+            balanceEntity.finalBalance = domain.finalBalance;
+        }
+        else{
+            balanceEntity.address = "";
+            balanceEntity.balance = "";
+            balanceEntity.unconfirmedBalance = "";
+            balanceEntity.finalBalance = "";
+        }
+
 
         return balanceEntity;
     }

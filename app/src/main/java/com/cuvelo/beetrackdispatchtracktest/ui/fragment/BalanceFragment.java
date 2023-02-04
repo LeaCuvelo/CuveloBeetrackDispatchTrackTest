@@ -23,8 +23,6 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint

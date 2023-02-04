@@ -73,7 +73,6 @@ public class BalanceFragmentViewModel  extends ViewModel {
     }
 
 
-
     private void saveBalanceInDb(BalanceDomain balanceDomain){
         saveBalanceUseCase.setBalanceDomain(balanceDomain);
         saveBalanceUseCase.execute(new BalanceFragmentViewModel.SaveBalanceByAddressUseCaseSubscriber(this));
